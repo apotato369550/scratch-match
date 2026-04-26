@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { db } from "../src/lib/db";
+import { db } from "../../src/lib/db";
 
 const BASE = process.env.TEST_BASE_URL ?? "http://localhost:3000";
 const EMAIL = `bones-test+${Date.now()}@example.ph`;

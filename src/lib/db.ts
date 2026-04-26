@@ -34,32 +34,46 @@ CREATE TABLE IF NOT EXISTS employer_profiles (
 );
 
 CREATE TABLE IF NOT EXISTS cvs (
-  id                INTEGER PRIMARY KEY AUTOINCREMENT,
-  seeker_id         INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  specialization    TEXT NOT NULL,
-  filename          TEXT,
-  raw_text          TEXT NOT NULL,
-  qdrant_point_ids  TEXT NOT NULL DEFAULT '[]',
-  created_at        DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+  id              INTEGER PRIMARY KEY AUTOINCREMENT,
+  seeker_id       INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  specialization  TEXT NOT NULL,
+  filename        TEXT,
+  raw_text        TEXT NOT NULL,
+  created_at      DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX IF NOT EXISTS idx_cvs_seeker ON cvs(seeker_id);
 CREATE INDEX IF NOT EXISTS idx_cvs_seeker_spec ON cvs(seeker_id, specialization);
 
+CREATE TABLE IF NOT EXISTS cv_chunks (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  cv_id      INTEGER NOT NULL REFERENCES cvs(id) ON DELETE CASCADE,
+  chunk_idx  INTEGER NOT NULL,
+  text       TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_cv_chunks_cv ON cv_chunks(cv_id);
+
 CREATE TABLE IF NOT EXISTS jobs (
-  id                INTEGER PRIMARY KEY AUTOINCREMENT,
-  employer_id       INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  title             TEXT NOT NULL,
-  description       TEXT NOT NULL,
-  requirements      TEXT,
-  qualifications    TEXT,
-  location          TEXT,
-  salary_range      TEXT,
-  status            TEXT NOT NULL DEFAULT 'open' CHECK (status IN ('open','closed')),
-  qdrant_point_ids  TEXT NOT NULL DEFAULT '[]',
-  created_at        DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+  id              INTEGER PRIMARY KEY AUTOINCREMENT,
+  employer_id     INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  title           TEXT NOT NULL,
+  description     TEXT NOT NULL,
+  requirements    TEXT,
+  qualifications  TEXT,
+  location        TEXT,
+  salary_range    TEXT,
+  status          TEXT NOT NULL DEFAULT 'open' CHECK (status IN ('open','closed')),
+  created_at      DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX IF NOT EXISTS idx_jobs_employer ON jobs(employer_id);
 CREATE INDEX IF NOT EXISTS idx_jobs_status ON jobs(status);
+
+CREATE TABLE IF NOT EXISTS job_chunks (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  job_id     INTEGER NOT NULL REFERENCES jobs(id) ON DELETE CASCADE,
+  chunk_idx  INTEGER NOT NULL,
+  text       TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_job_chunks_job ON job_chunks(job_id);
 
 CREATE TABLE IF NOT EXISTS matches (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
