@@ -27,6 +27,8 @@ dist/
 # --- Local data / runtime artifacts ---
 data/app.db
 data/app.db-journal
+data/app.db-wal
+data/app.db-shm
 data/qdrant/
 data/ollama/
 
