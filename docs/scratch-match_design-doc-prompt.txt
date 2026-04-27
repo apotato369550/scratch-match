@@ -1,0 +1,31 @@
+Hi Claude! I'd like your help in creating a design doc for an MVP POC (prototype proof-of-concept): Scratch Match!
+
+The AI-assisted/AI-powered job searcher that uses AI agents and AI primitives such as RAG to:
+- Match job finders with the appropriate job
+- Allow employers to upload job requirements, record matches, etc.
+- Allow job finders to get advice on the current job landscape within Cebu
+
+This project is in line with SDG 8. Locally bound within Cebu. Nothing fancy. KISS. This is to solve people carrying too many qualifications and not finding jobs, and unemployment - in the government, educational, and private sector.
+
+Tech Stack:
+HTML/CSS/JS
+React/Tailwind/Nextjs
+Docker & Qdrant
+Local language models/embedding models that accept PDFs and text
+SQLite (Prototype)
+
+Minimum Features:
+- Login/logout system for 3 types of users: admin, job seeker, employer - with only one admin account
+- Onboarding process for job seeker and employer for background - profile & company setup, who are you, why you're here, etc
+- Job seeker uploads CV to be matched automatically. Can upload up to 5 CVs per specialization for coverage. (feature 1 for job seeker) They get vectorized, embedded, and stored (qdrant, SQLite)
+- Job seeker chats with agent for job seeking advice, CV tailoring, how to apply for job listings (feature 2 for job seeker). Most relevant info gets inserted into context using RAG (Qdrant). Uses a local language model like Mistral running verbosely
+- Job seeker can search basic info about job openings currently posted in the system (feature 3 for job seeker)
+- Employer enters/uploads full job description, requirements, qualifications, and etc. into the system. Gets stored in vectordb/SQLite (employer feature 1). Can post up to 5 jobs
+- Employer has access to chatbot and can ask any possible candidates based on jobs posted, interesting candidates, what is needed based on hat's given. (employer feature 2)
+- Employer can search up employees in the database
+
+Must include:
+- setup instructions and setup scripts
+- initial data ingestion instructions
+- .env.example or sample .env
+- dependency installation instructions
