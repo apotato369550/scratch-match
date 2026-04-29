@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Scratch Match · Cebu Employment Matching Service",
   description:
-    "AI-assisted job matching prototype for the Province of Cebu, aligned with UN SDG 8.",
+    "AI-assisted job matching service for the Province of Cebu. Local, private, on-premise.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
