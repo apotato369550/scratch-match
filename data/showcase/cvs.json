@@ -1,0 +1,195 @@
+[
+  {
+    "id": 1,
+    "seeker_id": 1,
+    "seeker_name": "Juan dela Cruz",
+    "specialization": "Frontend Development",
+    "filename": "JuanDelaCruz_Frontend_v3.pdf",
+    "uploaded_at": "2026-04-12",
+    "chunks": 14,
+    "headline": "Frontend engineer with three years building React dashboards in Cebu City",
+    "summary": "Frontend developer with three years of professional experience shipping production React applications for Cebu-based startups and one regional BPO. Comfortable owning a feature end-to-end, from Figma handoff through QA, and used to working closely with backend engineers on REST contracts. Focused on accessible, well-typed UI with a strong test discipline.",
+    "skills": [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Tailwind CSS",
+      "Jest",
+      "Playwright",
+      "REST APIs",
+      "Git",
+      "Figma handoff"
+    ],
+    "experience": [
+      {
+        "title": "Frontend Engineer",
+        "company": "BlueLeaf Tech",
+        "location": "Cebu City",
+        "period": "2024 — present",
+        "details": "Lead frontend engineer for the customer-facing dashboard. Migrated the project from Create-React-App to Next.js with no user-visible regressions, brought TypeScript coverage from forty percent to ninety-five, and rewrote the design system on top of Tailwind. Mentored two junior engineers through their first production releases."
+      },
+      {
+        "title": "Junior Web Developer",
+        "company": "MariaSoft",
+        "location": "Mandaue",
+        "period": "2023 — 2024",
+        "details": "Built customer-onboarding flows in plain React for a B2B SaaS used by mid-sized accounting firms across the Visayas. Owned the form library used by every onboarding screen and shipped roughly thirty production tickets per month."
+      },
+      {
+        "title": "Internship — Web Developer",
+        "company": "Province of Cebu — IT Office",
+        "location": "Cebu City",
+        "period": "2022 — 2023",
+        "details": "Maintained two internal directory portals used by approximately two hundred provincial staff. Wrote the migration script that consolidated three legacy address tables into one canonical source, eliminating roughly six hundred duplicate records."
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bachelor of Science in Information Technology",
+        "school": "University of San Carlos",
+        "year": 2022
+      }
+    ],
+    "languages": ["Cebuano (native)", "English (professional)", "Tagalog (conversational)"],
+    "links": ["github.com/juandc-demo", "juandc.dev"],
+    "full_text": "JUAN DELA CRUZ — FRONTEND ENGINEER\n\nA frontend developer with three years of full-time experience shipping production React applications for Cebu-based startups and one regional BPO. I am comfortable owning a feature from a rough Figma file all the way through QA and post-release monitoring, and I work closely with backend engineers on contracts and observability rather than waiting for tickets to land. I care about typed, accessible UI and a test discipline that survives refactors.\n\nIn my current role I lead the frontend team for BlueLeaf Tech's customer-facing dashboard. Over the last fifteen months I migrated the project from Create-React-App to Next.js without a user-visible regression, raised TypeScript coverage from roughly forty percent to ninety-five, and rewrote the in-house design system on top of Tailwind so two junior engineers could ship without breaking visual consistency. I also introduced Playwright as our smoke-test layer and we now catch most layout regressions before they reach staging.\n\nBefore BlueLeaf, I worked at MariaSoft on customer-onboarding flows used by mid-sized accounting firms in the Visayas. I owned the small form library that powered every onboarding screen — input masks for PH tax IDs, a multi-step wizard, autosave — and shipped about thirty production tickets per month.\n\nMy first exposure to professional code was an internship at the Province of Cebu's IT Office, where I maintained two internal directory portals used by roughly two hundred provincial staff. The most useful thing I shipped there was a one-off migration script that consolidated three legacy address tables into a single canonical source and removed about six hundred duplicate records.\n\nI graduated from the University of San Carlos in 2022 with a BS in Information Technology. I work in Cebuano, English, and Tagalog. Outside of work I keep a small portfolio site at juandc.dev and a few open-source contributions on GitHub."
+  },
+  {
+    "id": 2,
+    "seeker_id": 1,
+    "seeker_name": "Juan dela Cruz",
+    "specialization": "Frontend Development",
+    "filename": "JuanDelaCruz_Frontend_v2.pdf",
+    "uploaded_at": "2026-03-30",
+    "chunks": 13,
+    "headline": "Earlier draft tailored for product-design-heavy frontend roles",
+    "summary": "An earlier version of the v3 frontend CV, with more weight on design-system work and Figma collaboration and slightly less on backend integration. Kept on file as a fallback for postings that lean product-design rather than full-stack.",
+    "skills": ["React", "TypeScript", "Tailwind CSS", "Figma", "Storybook", "Design systems"],
+    "experience": [
+      {
+        "title": "Frontend Engineer",
+        "company": "BlueLeaf Tech",
+        "location": "Cebu City",
+        "period": "2024 — present",
+        "details": "Same role as v3, with the bullet points rewritten to lead on the design-system rebuild and the Tailwind migration rather than the testing work."
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bachelor of Science in Information Technology",
+        "school": "University of San Carlos",
+        "year": 2022
+      }
+    ],
+    "languages": ["Cebuano (native)", "English (professional)"],
+    "links": ["juandc.dev"],
+    "full_text": "JUAN DELA CRUZ — FRONTEND ENGINEER (Design-systems variant)\n\nThis is the design-systems-leaning version of my CV. It keeps the same employment history but reorders the bullet points so that the design-system rebuild and the Tailwind migration sit at the top, and trims the testing and backend-integration material.\n\nThe rest of the document mirrors the v3 CV: three years at BlueLeaf and MariaSoft, the same provincial-office internship, and the same BS-IT degree from the University of San Carlos in 2022.\n\nI keep this version on file because some Cebu postings — especially the in-house product roles — really mean 'product designer who can code' when they say 'frontend engineer,' and leading with the system work plays better there."
+  },
+  {
+    "id": 3,
+    "seeker_id": 1,
+    "seeker_name": "Juan dela Cruz",
+    "specialization": "Customer Support",
+    "filename": "JuanDelaCruz_Support.pdf",
+    "uploaded_at": "2026-02-18",
+    "chunks": 11,
+    "headline": "Customer-support CV emphasising multilingual fluency and B2B SaaS exposure",
+    "summary": "A separate CV maintained for customer-support roles, which surface less often in Cebu but consistently when they do. Foregrounds the time at MariaSoft (which was technically a hybrid dev-and-support role for the first six months), language fluency, and one stretch of weekend on-call rotation.",
+    "skills": ["B2B SaaS support", "Zendesk", "Intercom", "Cebuano", "English", "Tagalog", "Tier-2 escalation"],
+    "experience": [
+      {
+        "title": "Junior Web Developer (with shared support rotation)",
+        "company": "MariaSoft",
+        "location": "Mandaue",
+        "period": "2023 — 2024",
+        "details": "Spent the first six months of this role on a shared support rotation responding to tier-2 tickets from accounting-firm customers in the Visayas while also shipping front-end changes. Closed approximately one hundred tickets per month with a customer-satisfaction score above ninety percent."
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bachelor of Science in Information Technology",
+        "school": "University of San Carlos",
+        "year": 2022
+      }
+    ],
+    "languages": ["Cebuano (native)", "English (professional)", "Tagalog (conversational)"],
+    "links": ["juandc.dev"],
+    "full_text": "JUAN DELA CRUZ — CUSTOMER SUPPORT\n\nThis CV foregrounds the customer-support side of my MariaSoft job, which was technically a hybrid dev-and-support role for the first six months. I closed about one hundred tier-2 tickets per month with a customer-satisfaction score above ninety percent, and I'm comfortable working escalations across Cebuano, English, and Tagalog.\n\nMy day-to-day support work covered Zendesk and Intercom, included one full quarter of weekend on-call rotation, and gave me first-hand experience writing post-mortems for the same product I was building. I think that's what makes me unusual for Cebu support hires — I can read the codebase to debug a customer report rather than just escalating it.\n\nMy education and the rest of my history are identical to my engineering CV: BS in Information Technology, University of San Carlos, 2022; one internship at the Province of Cebu's IT Office; and the BlueLeaf Tech engineering role I'm in now."
+  },
+  {
+    "id": 4,
+    "seeker_id": 2,
+    "seeker_name": "Maria Santos",
+    "specialization": "Frontend Development",
+    "filename": "MariaSantos_Senior_Frontend.pdf",
+    "uploaded_at": "2026-04-08",
+    "chunks": 16,
+    "headline": "Senior frontend engineer with four years in Cebu BPO and one large Tailwind migration",
+    "summary": "Senior frontend engineer with four years of experience, the last two and a half spent leading a frontend team of five at a Mandaue-based BPO. Owned a fifteen-month Tailwind CSS migration across roughly two hundred screens. Comfortable on-call and used to coordinating with offshore product teams.",
+    "skills": ["React", "TypeScript", "Tailwind CSS", "Redux Toolkit", "Storybook", "Vite", "Mentoring"],
+    "experience": [
+      {
+        "title": "Senior Frontend Engineer",
+        "company": "Northgate BPO",
+        "location": "Mandaue",
+        "period": "2023 — present",
+        "details": "Tech-lead for a frontend team of five. Drove the migration of approximately two hundred screens from a bespoke CSS layer to Tailwind across fifteen months while keeping the release cadence at weekly. Established the agent-portal Storybook, which now hosts approximately one hundred and twenty components."
+      },
+      {
+        "title": "Frontend Engineer",
+        "company": "Northgate BPO",
+        "location": "Mandaue",
+        "period": "2022 — 2023",
+        "details": "Hired as a regular frontend engineer; promoted into the senior role after the design-system project landed. Shipped the original agent-handoff screen, which is still the most-used view in the product."
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "school": "Cebu Institute of Technology — University",
+        "year": 2022
+      }
+    ],
+    "languages": ["Cebuano (native)", "English (full professional)"],
+    "links": ["github.com/maria-santos-cebu"],
+    "full_text": "MARIA SANTOS — SENIOR FRONTEND ENGINEER\n\nFour years of frontend experience, the last two and a half spent as tech-lead of a five-person frontend team at Northgate BPO in Mandaue. I'm probably best known internally for the fifteen-month Tailwind migration we ran across roughly two hundred screens — we kept the weekly release cadence the entire time, which I'm still proud of.\n\nMy day-to-day is split between three things: code review for the team, the Storybook for the agent portal (about one hundred and twenty components, which I established when I took the senior role), and on-call rotation. I'm comfortable being the person who picks up the pager and traces a flaky screen back to a stale Redux selector at two in the morning.\n\nBefore I led the team I was a regular frontend engineer at the same company. I shipped the original agent-handoff screen — still the most-used view in the product — and was promoted after the design-system project landed in production. I graduated from CIT-University in 2022 with a BS in Computer Science.\n\nI'm looking specifically for senior roles that involve mentoring; I find that's where I'm most useful and most challenged."
+  },
+  {
+    "id": 5,
+    "seeker_id": 3,
+    "seeker_name": "Pedro Reyes",
+    "specialization": "Customer Support",
+    "filename": "PedroReyes_CustomerSupport.pdf",
+    "uploaded_at": "2026-03-15",
+    "chunks": 12,
+    "headline": "Bilingual support specialist with two years tier-2 SaaS experience in Lapu-Lapu",
+    "summary": "Customer-support specialist with two years of tier-2 SaaS experience at a Lapu-Lapu BPO serving North-American small businesses. Comfortable handling roughly seventy tickets per day with a CSAT consistently above ninety-two percent. Trilingual.",
+    "skills": ["Zendesk", "Intercom", "Salesforce Service Cloud", "Tier-2 escalation", "Cebuano", "English", "Tagalog"],
+    "experience": [
+      {
+        "title": "Customer Support Specialist (Tier 2)",
+        "company": "Reefside Labs",
+        "location": "Lapu-Lapu",
+        "period": "2024 — present",
+        "details": "Handle approximately seventy tickets per day for North-American small-business customers. Took ownership of the troubleshooting playbook for billing edge-cases and rewrote roughly thirty articles in the public help centre."
+      },
+      {
+        "title": "Customer Support Associate (Tier 1)",
+        "company": "Reefside Labs",
+        "location": "Lapu-Lapu",
+        "period": "2023 — 2024",
+        "details": "Started on tier 1 and was promoted to tier 2 after eleven months. Maintained a CSAT score above ninety-two percent for the entire stretch."
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bachelor of Arts in Communication",
+        "school": "University of the Visayas",
+        "year": 2023
+      }
+    ],
+    "languages": ["Cebuano (native)", "English (full professional)", "Tagalog (full professional)"],
+    "links": [],
+    "full_text": "PEDRO REYES — CUSTOMER SUPPORT SPECIALIST\n\nTwo years of tier-2 SaaS support at Reefside Labs in Lapu-Lapu, serving North-American small-business customers. I handle around seventy tickets per shift across Zendesk, Intercom, and Salesforce Service Cloud, and my CSAT score has stayed above ninety-two percent every quarter since I was promoted to tier 2.\n\nThe work I'm probably most proud of is the billing-edge-cases playbook — the on-shift troubleshooting guide for the messy cases where a customer's invoice doesn't match their subscription history. I rewrote it from a thread-of-Slack-messages format into thirty proper help-centre articles and a decision tree, and our average handle time on those tickets dropped from twenty-two minutes to about fourteen.\n\nI started on tier 1 in 2023 and was promoted after eleven months. Before Reefside I finished my BA in Communication at UV in 2023. I work in Cebuano, English, and Tagalog at a full professional level."
+  }
+]

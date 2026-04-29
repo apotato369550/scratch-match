@@ -1,0 +1,56 @@
+[
+  {
+    "cv_id": 1,
+    "job_id": 1,
+    "score": 0.91,
+    "rationale": "The CV's three years of professional React with TypeScript at BlueLeaf Tech and MariaSoft directly matches this posting's two-year minimum and the named stack. The Tailwind migration and Storybook work answer the design-system maintenance responsibility. Strong fit on hybrid Cebu-City logistics."
+  },
+  {
+    "cv_id": 1,
+    "job_id": 4,
+    "score": 0.84,
+    "rationale": "Hybrid technical/customer-facing background at MariaSoft is directly relevant. Strong written English and Cebuano fluency answer the local-firm-account preference. Less of a fit on years of pure customer-success experience, which the posting wants two of."
+  },
+  {
+    "cv_id": 1,
+    "job_id": 5,
+    "score": 0.79,
+    "rationale": "The provincial-IT internship and BS in Information Technology align cleanly with the Contract-of-Service eligibility. PHP is not on the CV but the candidate has shown they can pick up legacy stacks (the dela Cruz address-table migration). Score is dampened by the day-shift, no-on-call expectation matching less of an upside than a senior product role."
+  },
+  {
+    "cv_id": 1,
+    "job_id": 2,
+    "score": 0.74,
+    "rationale": "Playwright experience and the test-discipline mindset match this QA posting well. The candidate is overqualified on the engineering side, which is why the score is below the frontend-engineer match — they are unlikely to take this role unless circumstances force it."
+  },
+  {
+    "cv_id": 1,
+    "job_id": 3,
+    "score": 0.42,
+    "rationale": "Stretch match. Office-assistant role does not use the candidate's professional experience and would represent a significant pay cut. Surfaced only because of the company-employer overlap (BlueLeaf)."
+  },
+  {
+    "cv_id": 4,
+    "job_id": 1,
+    "score": 0.93,
+    "rationale": "Senior-level fit. Four years of React, the Tailwind migration experience at Northgate, and the explicit mentoring preference all align with the lead-frontend-voice expectation in this posting. Likely to push back on the salary range upward."
+  },
+  {
+    "cv_id": 4,
+    "job_id": 2,
+    "score": 0.58,
+    "rationale": "Senior frontend engineer applying to a QA role would be unusual; the candidate has no QA-specific experience listed. Match score primarily comes from Playwright exposure via the regression suite at Northgate."
+  },
+  {
+    "cv_id": 5,
+    "job_id": 4,
+    "score": 0.86,
+    "rationale": "Tier-2 SaaS support background at Reefside maps well to the customer-success role at MariaSoft. The candidate would step into a quarterly-business-review cadence with confidence. Less of a fit on the explicit two-year customer-success requirement (the role is support-leaning rather than CS-leaning), but easily learnable."
+  },
+  {
+    "cv_id": 5,
+    "job_id": 6,
+    "score": 0.62,
+    "rationale": "Hospitality front-desk role with strong English communication is in adjacency to support work. Candidate has no resort-specific experience but has the customer-facing temperament. Surfaced as a stretch option."
+  }
+]
