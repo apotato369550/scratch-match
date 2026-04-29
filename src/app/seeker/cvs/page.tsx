@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { Workspace, seekerNav } from "@/components/Workspace";
-
-const cvs = [
-  { id: 1, name: "JuanDelaCruz_Frontend_v3.pdf", spec: "Frontend Development", uploaded: "2026-04-12", chunks: 14 },
-  { id: 2, name: "JuanDelaCruz_Frontend_v2.pdf", spec: "Frontend Development", uploaded: "2026-03-30", chunks: 13 },
-  { id: 3, name: "JuanDelaCruz_Support.pdf", spec: "Customer Support", uploaded: "2026-02-18", chunks: 11 },
-];
+import { CvListClient } from "@/components/showcase/CvListClient";
+import { getShowcaseCvs } from "@/lib/showcase";
 
 export default function MyCVs() {
+  // Showcase: pretend the logged-in user is seeker_id=1 (Juan dela Cruz).
+  const cvs = getShowcaseCvs().filter((c) => c.seeker_id === 1);
+  const bySpec = new Map<string, number>();
+  for (const c of cvs) bySpec.set(c.specialization, (bySpec.get(c.specialization) ?? 0) + 1);
+
   return (
     <>
       <PageHeader
@@ -18,40 +19,15 @@ export default function MyCVs() {
         crumbs={[{ label: "Home", href: "/" }, { label: "Seeker", href: "/seeker/dashboard" }, { label: "CVs" }]}
         actions={<Link href="/seeker/cvs/upload" className="btn-primary">Upload CV</Link>}
       />
-      <Workspace navTitle="Seeker Workspace" nav={seekerNav}>
-        <div className="card overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-navy-50 text-navy-800">
-              <tr className="text-left">
-                <th className="px-4 py-3 font-semibold">File</th>
-                <th className="px-4 py-3 font-semibold">Specialization</th>
-                <th className="px-4 py-3 font-semibold">Uploaded</th>
-                <th className="px-4 py-3 font-semibold">Chunks</th>
-                <th className="px-4 py-3 font-semibold text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-navy-100">
-              {cvs.map((cv) => (
-                <tr key={cv.id}>
-                  <td className="px-4 py-3 font-mono text-xs">{cv.name}</td>
-                  <td className="px-4 py-3"><span className="badge-navy">{cv.spec}</span></td>
-                  <td className="px-4 py-3 text-ink-soft">{cv.uploaded}</td>
-                  <td className="px-4 py-3 text-ink-soft">{cv.chunks}</td>
-                  <td className="px-4 py-3 text-right space-x-2">
-                    <Link href="/seeker/matches" className="btn-secondary">Matches</Link>
-                    <button className="btn-ghost text-seal">Delete</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      <Workspace nav={seekerNav}>
+        <CvListClient cvs={cvs} />
 
-        <div className="card p-5">
-          <div className="text-[11px] uppercase tracking-[0.18em] text-navy-700">Quota</div>
-          <div className="mt-2 grid sm:grid-cols-2 gap-3 text-sm">
-            <Quota spec="Frontend Development" used={2} max={5} />
-            <Quota spec="Customer Support" used={1} max={5} />
+        <div className="card p-6">
+          <div className="text-xs uppercase tracking-[0.18em] text-navy-700">Quota</div>
+          <div className="mt-3 grid sm:grid-cols-2 gap-3 text-sm">
+            {Array.from(bySpec.entries()).map(([spec, used]) => (
+              <Quota key={spec} spec={spec} used={used} max={5} />
+            ))}
           </div>
         </div>
       </Workspace>
@@ -62,7 +38,7 @@ export default function MyCVs() {
 function Quota({ spec, used, max }: { spec: string; used: number; max: number }) {
   const pct = (used / max) * 100;
   return (
-    <div className="rounded-sm border border-navy-100 p-3">
+    <div className="rounded-md border border-navy-100 p-4">
       <div className="flex items-center justify-between">
         <div className="font-medium text-navy-900">{spec}</div>
         <div className="text-xs text-ink-soft">{used} / {max}</div>

@@ -1,43 +1,36 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { Workspace, seekerNav } from "@/components/Workspace";
+import { JobModalBody } from "@/components/showcase/JobModalBody";
+import { getShowcaseJob, getShowcaseMatches, getShowcaseCvs } from "@/lib/showcase";
 
 export default function JobDetail({ params }: { params: { id: string } }) {
+  const job = getShowcaseJob(Number(params.id));
+  if (!job) notFound();
+
+  const cvIds = new Set(getShowcaseCvs().filter((c) => c.seeker_id === 1).map((c) => c.id));
+  const match = getShowcaseMatches().find(
+    (m) => m.job_id === job.id && cvIds.has(m.cv_id)
+  );
+
   return (
     <>
       <PageHeader
-        eyebrow={`Posting #${params.id}`}
-        title="Frontend Engineer"
-        description="BlueLeaf Tech · Cebu City · ₱35k–₱55k · Full-time"
+        eyebrow={`Posting #${job.id}`}
+        title={job.title}
+        description={`${job.company} · ${job.location} · ${job.salary_range} · ${job.employment_type}`}
         crumbs={[
           { label: "Home", href: "/" },
           { label: "Seeker", href: "/seeker/dashboard" },
           { label: "Search Jobs", href: "/seeker/jobs" },
-          { label: `Posting #${params.id}` },
+          { label: job.title },
         ]}
         actions={<Link href="/seeker/chat" className="btn-primary">Ask advisor</Link>}
       />
-      <Workspace navTitle="Seeker Workspace" nav={seekerNav}>
-        <div className="card p-6 space-y-4">
-          <span className="badge-gold">Match 91%</span>
-          <h2 className="section-title">Description</h2>
-          <p className="text-sm text-ink-soft">
-            BlueLeaf is hiring a frontend engineer to build customer dashboards in React + Tailwind.
-            Hybrid Cebu City office, two days on-site.
-          </p>
-          <h2 className="section-title">Requirements</h2>
-          <ul className="text-sm text-ink-soft list-disc list-inside space-y-1">
-            <li>2+ years professional React experience</li>
-            <li>TypeScript and modern build tooling</li>
-            <li>Comfortable with REST and basic auth flows</li>
-          </ul>
-          <h2 className="section-title">Qualifications</h2>
-          <ul className="text-sm text-ink-soft list-disc list-inside space-y-1">
-            <li>Bachelor's degree or equivalent industry experience</li>
-            <li>Resident or willing to relocate to Cebu</li>
-          </ul>
-          <div className="divider-rule" />
-          <div className="text-xs text-navy-700">Posted 2026-04-10 · Reference SM-{params.id}</div>
+      <Workspace nav={seekerNav}>
+        <div className="card p-8 space-y-6">
+          <JobModalBody job={job} score={match?.score} />
         </div>
       </Workspace>
     </>
