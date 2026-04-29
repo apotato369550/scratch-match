@@ -53,3 +53,4 @@ coverage/
 .cache/
 .eslintcache
 *.tsbuildinfo
+/assignments/
