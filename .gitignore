@@ -53,9 +53,4 @@ coverage/
 .cache/
 .eslintcache
 *.tsbuildinfo
-<<<<<<< HEAD
-
-assignments/
-=======
 /assignments/
->>>>>>> chore/config
