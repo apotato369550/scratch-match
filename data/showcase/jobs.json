@@ -1,0 +1,289 @@
+[
+  {
+    "id": 1,
+    "employer_id": 1,
+    "title": "Frontend Engineer",
+    "company": "BlueLeaf Tech",
+    "location": "Cebu City",
+    "salary_range": "₱35,000 – ₱55,000",
+    "employment_type": "Full-time, hybrid (2 days on-site)",
+    "status": "open",
+    "posted_at": "2026-04-10",
+    "applicants": 24,
+    "tags": ["React", "TypeScript", "Tailwind", "Hybrid"],
+    "summary": "Frontend engineer to build customer dashboards in React and Tailwind, working alongside a small product team in Cebu City.",
+    "description": "BlueLeaf Tech is a fifteen-person product company based in Cebu City. We build a B2B SaaS used by accounting firms across the Visayas to reconcile bank statements against client books. We are hiring a frontend engineer to take ownership of the customer-facing dashboard alongside our existing team of two.\n\nThe dashboard is a Next.js application with TypeScript and Tailwind CSS. It is the part of the product our customers spend their entire workday inside, so the bar for accessibility, keyboard navigation, and load-time consistency is high. You will be the third dedicated frontend voice in the room when we plan the next quarter and you will be expected to push back on scope, not just take tickets.\n\nThis is a hybrid role. We expect two days a week in our Cebu City office (Mondays for planning, Thursdays for review) and the rest of the week is up to you. Hours are flexible inside the agreed-upon weekly meeting calendar.",
+    "responsibilities": [
+      "Own discrete features in the customer dashboard end-to-end, from Figma handoff through QA, monitoring, and the inevitable post-release bugfix.",
+      "Pair with our backend engineer on the REST contract for any new feature rather than waiting for the endpoint to land.",
+      "Maintain the in-house Tailwind component library and review pull requests against it.",
+      "Participate in our weekly on-call rotation (one week every six)."
+    ],
+    "requirements": [
+      "At least two years of professional React experience with a real production application.",
+      "Working knowledge of TypeScript and modern build tooling (Next.js or Vite).",
+      "Comfortable reading REST endpoints and writing the corresponding fetch logic without hand-holding.",
+      "Has shipped at least one feature you can talk through in detail in the interview."
+    ],
+    "qualifications": [
+      "Bachelor's degree in any field, or equivalent industry experience.",
+      "Resident of, or willing to relocate to, the Province of Cebu.",
+      "Comfortable working in English; Cebuano is a plus for customer-facing interviews."
+    ],
+    "benefits": [
+      "HMO from day one for the employee plus one dependent.",
+      "Annual learning budget of ₱25,000.",
+      "Office equipment provided (MacBook Pro or equivalent Linux laptop, on request)."
+    ]
+  },
+  {
+    "id": 2,
+    "employer_id": 1,
+    "title": "QA Tester",
+    "company": "BlueLeaf Tech",
+    "location": "Cebu City",
+    "salary_range": "₱25,000 – ₱35,000",
+    "employment_type": "Full-time, on-site",
+    "status": "open",
+    "posted_at": "2026-04-02",
+    "applicants": 12,
+    "tags": ["Manual QA", "Playwright", "On-site"],
+    "summary": "Manual and light-automation QA tester for a small B2B SaaS product team, on-site in our Cebu City office.",
+    "description": "We are looking for a QA tester to join our small product team at BlueLeaf Tech. The role is mostly manual exploratory testing on the customer dashboard, with light automation work in Playwright for the regression suite. You will sit beside the engineering team in our Cebu City office and be part of every release decision rather than receiving builds over the wall.\n\nWe ship to production roughly twice a week, so the rhythm of the role is two days of structured test passes for the upcoming release, two days of exploratory or follow-up testing on what just shipped, and one day for the regression-suite automation backlog.",
+    "responsibilities": [
+      "Run structured pre-release test passes against the staging environment using a checklist you will help maintain.",
+      "Investigate customer-reported issues escalated by support, reproduce them, and file the bug ticket with everything an engineer needs to fix it.",
+      "Extend our Playwright regression suite by approximately one new flow per week.",
+      "Sit in on weekly planning and push back on tickets that lack clear acceptance criteria."
+    ],
+    "requirements": [
+      "At least one year of professional QA experience on a web product.",
+      "Working understanding of how to write a reproducible bug report (steps, expected, actual, environment).",
+      "Some hands-on experience with at least one browser automation tool — Playwright, Cypress, or Selenium.",
+      "A test-discipline mindset: you would rather find a bug at staging than after a release."
+    ],
+    "qualifications": [
+      "Bachelor's degree in any field, or equivalent industry experience.",
+      "Resident of the Province of Cebu.",
+      "Comfortable working in English with a small engineering team."
+    ],
+    "benefits": [
+      "HMO from day one for the employee.",
+      "Annual learning budget of ₱15,000.",
+      "On-site office equipment provided."
+    ]
+  },
+  {
+    "id": 3,
+    "employer_id": 1,
+    "title": "Office Assistant",
+    "company": "BlueLeaf Tech",
+    "location": "Cebu City",
+    "salary_range": "₱18,000 – ₱22,000",
+    "employment_type": "Full-time, on-site",
+    "status": "open",
+    "posted_at": "2026-03-22",
+    "applicants": 11,
+    "tags": ["Admin", "On-site", "Filipino-speaking"],
+    "summary": "Office assistant for our Cebu City head office, supporting fifteen staff across admin, supplies, and reception.",
+    "description": "We are looking for a full-time office assistant for our Cebu City head office. You will support a team of fifteen across day-to-day admin: supplies, reception, document filing, and coordinating with our outside accountant on receipts and reimbursements. The role is on-site, Mondays through Fridays, with one Saturday morning per month covering deliveries.",
+    "responsibilities": [
+      "Maintain the supplies inventory and place orders weekly so the office never runs out of coffee or printer toner.",
+      "Greet visitors, set up meeting rooms, and handle the front desk when staff are on a call.",
+      "Sort and file physical receipts; scan and upload digitally for the accountant on a weekly cadence.",
+      "Liaise with the building admin on parking, AC, and after-hours access requests."
+    ],
+    "requirements": [
+      "At least one year of office or admin experience.",
+      "Comfortable with email, basic spreadsheets, and a shared cloud drive.",
+      "Friendly, organised, punctual."
+    ],
+    "qualifications": [
+      "High-school graduate at minimum; a college degree is welcome but not required.",
+      "Resident of the Province of Cebu, ideally Cebu City or close enough to commute reliably."
+    ],
+    "benefits": [
+      "HMO from day one for the employee.",
+      "13th-month and the standard government-mandated benefits."
+    ]
+  },
+  {
+    "id": 4,
+    "employer_id": 2,
+    "title": "Customer Success Officer",
+    "company": "MariaSoft",
+    "location": "Mandaue",
+    "salary_range": "₱28,000 – ₱40,000",
+    "employment_type": "Full-time, shifting",
+    "status": "open",
+    "posted_at": "2026-04-15",
+    "applicants": 18,
+    "tags": ["Customer Success", "B2B SaaS", "Shifting"],
+    "summary": "Customer Success Officer for a B2B SaaS used by accounting firms in the Visayas. Shifting schedule, on-site in Mandaue.",
+    "description": "MariaSoft is hiring a Customer Success Officer to take ownership of approximately thirty mid-sized accounting-firm customers across the Visayas. You will not be doing tier-1 ticket triage; that is handled by the support team. Your job is the relationship: regular check-ins, quarterly business reviews, and being the first call when something goes badly wrong.\n\nThe role is on-site in Mandaue, on a shifting schedule that covers our two busy windows around tax-filing season. Outside those windows hours are predictable.",
+    "responsibilities": [
+      "Run quarterly business reviews with each of your accounts.",
+      "Coordinate with the product team to surface customer requests that look like they affect more than one account.",
+      "Own the renewal conversation for your accounts.",
+      "Escalate critical issues to engineering directly when the support tier cannot resolve."
+    ],
+    "requirements": [
+      "At least two years of B2B customer-success or account-management experience.",
+      "Strong written and spoken English.",
+      "Comfortable presenting to a room of three to five customer staff at a quarterly review."
+    ],
+    "qualifications": [
+      "Bachelor's degree in any field.",
+      "Resident of the Province of Cebu.",
+      "Cebuano fluency strongly preferred for the local-firm accounts."
+    ],
+    "benefits": [
+      "HMO from day one for the employee plus two dependents.",
+      "Performance bonus tied to renewal rate.",
+      "Annual learning budget of ₱20,000."
+    ]
+  },
+  {
+    "id": 5,
+    "employer_id": 3,
+    "title": "Junior Web Developer",
+    "company": "Province of Cebu — IT Office",
+    "location": "Cebu City",
+    "salary_range": "Salary Grade 11 (per DBM)",
+    "employment_type": "Contract of Service, day shift",
+    "status": "open",
+    "posted_at": "2026-04-05",
+    "applicants": 9,
+    "tags": ["Government", "PHP", "Day shift"],
+    "summary": "Junior web developer (Contract of Service) for the Provincial IT Office, maintaining internal portals used by provincial staff.",
+    "description": "The Provincial IT Office is hiring a junior web developer on a Contract of Service basis (renewable annually) to help maintain and extend three internal portals used by approximately four hundred provincial staff. The portals are PHP-based with a small amount of newer JavaScript on the form-validation layer.\n\nThis is a daytime role, Mondays through Fridays, in the Capitol building in Cebu City. There are no on-call expectations.",
+    "responsibilities": [
+      "Maintain three internal portals: a directory, a leave-request system, and an asset-tracking tool.",
+      "Implement small new features as requested by department heads.",
+      "Keep the staging and production environments in sync with the office's existing deployment script.",
+      "Document any new feature in the wiki."
+    ],
+    "requirements": [
+      "Working knowledge of PHP and basic SQL.",
+      "Some exposure to JavaScript and either jQuery or vanilla DOM scripting.",
+      "Familiarity with Git."
+    ],
+    "qualifications": [
+      "Bachelor's degree in Information Technology, Computer Science, or related field.",
+      "Resident of the Province of Cebu.",
+      "Eligibility for Contract of Service appointment per Provincial HR rules."
+    ],
+    "benefits": [
+      "Standard government-mandated benefits applicable to Contract-of-Service appointments.",
+      "Day-shift schedule.",
+      "Stable workload, predictable hours."
+    ]
+  },
+  {
+    "id": 6,
+    "employer_id": 4,
+    "title": "Hotel Front Desk Officer",
+    "company": "Mactan Bay Resort",
+    "location": "Lapu-Lapu",
+    "salary_range": "₱18,000 – ₱24,000",
+    "employment_type": "Full-time, shifting",
+    "status": "open",
+    "posted_at": "2026-04-12",
+    "applicants": 14,
+    "tags": ["Hospitality", "English", "Shifting"],
+    "summary": "Front Desk Officer for a fifty-key beach resort in Lapu-Lapu, on a shifting schedule that includes weekends.",
+    "description": "Mactan Bay Resort is hiring a Front Desk Officer to join the existing team of four. You will be the first person guests meet on arrival and the last person they speak to before departure, so the standard for warmth and accuracy is high. Roughly seventy percent of our guests are foreign tourists, so spoken English at a professional level is non-negotiable.\n\nThe role is on a shifting schedule (morning, afternoon, and one overnight per week) and includes weekend work.",
+    "responsibilities": [
+      "Handle check-in and check-out, including any payment reconciliation.",
+      "Answer guest questions about the resort, the surrounding area, and onward transport.",
+      "Coordinate with housekeeping on early check-ins and late check-outs.",
+      "Maintain the front-desk log so the next shift has full context."
+    ],
+    "requirements": [
+      "At least one year of hotel or resort front-desk experience.",
+      "Spoken English at a full professional level.",
+      "Comfortable handling cash and card payments accurately."
+    ],
+    "qualifications": [
+      "Bachelor's degree in Hospitality, Tourism, or related field, or equivalent industry experience.",
+      "Resident of the Province of Cebu, ideally Lapu-Lapu or Mactan Island."
+    ],
+    "benefits": [
+      "HMO from day one.",
+      "Staff meals on shift.",
+      "Standard government-mandated benefits."
+    ]
+  },
+  {
+    "id": 7,
+    "employer_id": 5,
+    "title": "Bookkeeper",
+    "company": "Carcar Trading Co.",
+    "location": "Carcar City",
+    "salary_range": "₱22,000 – ₱28,000",
+    "employment_type": "Full-time, on-site",
+    "status": "open",
+    "posted_at": "2026-03-28",
+    "applicants": 7,
+    "tags": ["Bookkeeping", "QuickBooks", "PH Tax"],
+    "summary": "Full-time bookkeeper for a family-owned trading company in Carcar City, owning monthly close and BIR filings.",
+    "description": "Carcar Trading Co. is a forty-year-old family-owned trading company in Carcar City. We are hiring a full-time bookkeeper to take ownership of monthly close, payroll reconciliation, and our quarterly BIR filings. The role reports to the General Manager and works closely with our outside CPA on year-end audit.",
+    "responsibilities": [
+      "Run the full monthly close in QuickBooks and produce the standard P&L and balance-sheet for the GM.",
+      "Reconcile payroll against time records every cut-off.",
+      "Prepare the quarterly BIR filings (1601-C, 2550-Q, 1701-Q) and coordinate with our CPA before submission.",
+      "Maintain the accounts-payable schedule and flag overdue invoices to the GM weekly."
+    ],
+    "requirements": [
+      "At least three years of bookkeeping experience in a Philippine company.",
+      "Hands-on QuickBooks experience.",
+      "Working knowledge of Philippine tax filings.",
+      "Comfortable with confidential financial information."
+    ],
+    "qualifications": [
+      "Bachelor's degree in Accountancy or related field.",
+      "CPA is a plus but not required.",
+      "Resident of the Province of Cebu, ideally close to Carcar."
+    ],
+    "benefits": [
+      "13th-month and standard government-mandated benefits.",
+      "Predictable daytime hours.",
+      "Long-tenure-friendly workplace."
+    ]
+  },
+  {
+    "id": 8,
+    "employer_id": 6,
+    "title": "Math Teacher (Senior High)",
+    "company": "St. Lourdes Academy",
+    "location": "Talisay",
+    "salary_range": "Per DepEd schedule",
+    "employment_type": "Full-time, school year contract",
+    "status": "open",
+    "posted_at": "2026-04-01",
+    "applicants": 6,
+    "tags": ["Education", "Senior High", "DepEd"],
+    "summary": "Senior-high mathematics teacher for the upcoming school year, covering Pre-Calculus and Statistics.",
+    "description": "St. Lourdes Academy is hiring a senior-high mathematics teacher for the upcoming school year. The teaching load is two sections of Pre-Calculus and one section of Statistics, plus one homeroom advisory. You will report to the Senior-High Coordinator.",
+    "responsibilities": [
+      "Teach two Pre-Calculus sections and one Statistics section across the school year.",
+      "Serve as homeroom adviser for one Grade 11 section.",
+      "Set and grade quarterly assessments aligned to the DepEd curriculum guide.",
+      "Participate in monthly faculty meetings and the two parent-teacher conferences per year."
+    ],
+    "requirements": [
+      "Bachelor's degree in Education or a Math-adjacent field with units in Education.",
+      "LET (Licensure Examination for Teachers) eligibility.",
+      "At least one school year of teaching experience, secondary level."
+    ],
+    "qualifications": [
+      "Resident of the Province of Cebu.",
+      "Comfortable working in a Catholic-school environment."
+    ],
+    "benefits": [
+      "Standard DepEd-aligned compensation and government-mandated benefits.",
+      "School-year contract with clear renewal process.",
+      "Two-month summer break."
+    ]
+  }
+]

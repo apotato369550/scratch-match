@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Juan dela Cruz",
+    "email": "juandc@example.ph",
+    "location": "Cebu City",
+    "primary_specialization": "Frontend Development",
+    "years_experience": 3,
+    "cv_count": 3,
+    "headline": "Frontend engineer (3 yrs) — React, TypeScript, Tailwind",
+    "bio": "Frontend developer with three years of full-time experience shipping production React applications for Cebu-based startups and one regional BPO. Currently at BlueLeaf Tech as the lead frontend voice on a small product team. Maintains a separate CV for customer-support roles based on a hybrid early career stretch at MariaSoft.",
+    "cv_ids": [1, 2, 3]
+  },
+  {
+    "id": 2,
+    "name": "Maria Santos",
+    "email": "maria.santos@example.ph",
+    "location": "Mandaue",
+    "primary_specialization": "Frontend Development",
+    "years_experience": 4,
+    "cv_count": 1,
+    "headline": "Senior frontend engineer (4 yrs) — design systems, mentoring",
+    "bio": "Senior frontend engineer at Northgate BPO in Mandaue, currently tech-lead of a five-person frontend team. Drove a fifteen-month Tailwind migration across roughly two hundred screens with no break in the weekly release cadence. Looking specifically for senior roles that involve mentoring.",
+    "cv_ids": [4]
+  },
+  {
+    "id": 3,
+    "name": "Pedro Reyes",
+    "email": "pedro.reyes@example.ph",
+    "location": "Lapu-Lapu",
+    "primary_specialization": "Customer Support",
+    "years_experience": 2,
+    "cv_count": 1,
+    "headline": "Tier-2 SaaS support specialist — trilingual, CSAT 92%+",
+    "bio": "Customer-support specialist at Reefside Labs, handling roughly seventy tickets per shift for North-American small-business customers. Promoted from tier 1 to tier 2 after eleven months. Trilingual (Cebuano, English, Tagalog).",
+    "cv_ids": [5]
+  },
+  {
+    "id": 4,
+    "name": "Anna Lim",
+    "email": "anna.lim@example.ph",
+    "location": "Talisay",
+    "primary_specialization": "Frontend Development",
+    "years_experience": 1,
+    "cv_count": 1,
+    "headline": "Junior frontend developer — bootcamp graduate, 2 OSS contributions",
+    "bio": "Recent bootcamp graduate (2025) with one year of freelance frontend work and two merged contributions to mid-sized open-source React projects. Strong on fundamentals; explicitly looking for a structured first full-time role with senior mentorship.",
+    "cv_ids": []
+  },
+  {
+    "id": 5,
+    "name": "Joaquin Bautista",
+    "email": "joaquin.b@example.ph",
+    "location": "Carcar",
+    "primary_specialization": "Bookkeeping",
+    "years_experience": 6,
+    "cv_count": 2,
+    "headline": "Bookkeeper (6 yrs) — QuickBooks, PH tax, monthly close",
+    "bio": "Bookkeeper with six years of experience across two Philippine SMEs. Owns monthly close, BIR filings, and works directly with outside CPAs on year-end audit. Looking for a role close to Carcar with predictable daytime hours.",
+    "cv_ids": []
+  },
+  {
+    "id": 6,
+    "name": "Rosario Villaroya",
+    "email": "rosario.v@example.ph",
+    "location": "Talisay",
+    "primary_specialization": "Education",
+    "years_experience": 5,
+    "cv_count": 1,
+    "headline": "Senior-high math teacher — LET-licensed, 5 yrs DepEd-aligned",
+    "bio": "LET-licensed senior-high math teacher with five school years at a Talisay private school. Currently teaches Pre-Calculus and Basic Calculus across three sections plus one Grade 12 advisory. Open to lateral moves within Cebu Province.",
+    "cv_ids": []
+  }
+]
