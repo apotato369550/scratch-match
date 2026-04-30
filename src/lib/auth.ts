@@ -1,11 +1,17 @@
 import crypto from "node:crypto";
 import { cookies } from "next/headers";
 import { db, type UserRow, type Role } from "./db";
+export type { Role };
 
 export { hashPassword, verifyPassword } from "./password";
 
 const SESSION_COOKIE = "sm_session";
 const SESSION_TTL_DAYS = 14;
+
+export function isShowcaseMode(): boolean {
+  const v = process.env.SHOWCASE_MODE ?? process.env.TEST_MODE;
+  return v === "1" || v === "true";
+}
 
 export function createSession(userId: number): string {
   const token = crypto.randomBytes(32).toString("hex");
@@ -39,6 +45,18 @@ export function getSessionToken(): string | undefined {
 }
 
 export function getCurrentUser(): UserRow | null {
+  if (isShowcaseMode()) {
+    const raw = cookies().get("sm_showcase")?.value;
+    if (!raw) return null;
+    const [role, email] = raw.split("|");
+    return {
+      id: 0,
+      email: email ?? "demo@showcase.local",
+      password_hash: "",
+      role: (role as Role) ?? "seeker",
+      created_at: new Date().toISOString(),
+    };
+  }
   const token = getSessionToken();
   if (!token) return null;
   const row = db

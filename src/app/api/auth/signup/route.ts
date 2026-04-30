@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { db } from "@/lib/db";
-import { hashPassword, createSession, setSessionCookie } from "@/lib/auth";
+import { hashPassword, createSession, setSessionCookie, isShowcaseMode } from "@/lib/auth";
+import { cookies } from "next/headers";
 
 const Body = z.object({
   email: z.string().email().toLowerCase(),
@@ -15,6 +16,16 @@ export async function POST(req: Request) {
     parsed = Body.parse(await req.json());
   } catch (e) {
     return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+  }
+
+  if (isShowcaseMode()) {
+    cookies().set("sm_showcase", `${parsed.role}|${parsed.email}`, {
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 14 * 24 * 60 * 60,
+    });
+    return NextResponse.json({ id: 0, email: parsed.email, role: parsed.role, showcase: true });
   }
 
   const existing = db.prepare("SELECT id FROM users WHERE email = ?").get(parsed.email);

@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser, isShowcaseMode } from "@/lib/auth";
 import { ingestCv } from "@/lib/ingest";
 import { extractPdfText, PdfTooSparseError } from "@/lib/pdf";
+import { getShowcaseCvs } from "@/lib/showcase";
 
 const MAX_PER_SPEC = Number(process.env.MAX_CVS_PER_SPECIALIZATION ?? 5);
 
@@ -11,13 +12,15 @@ export async function GET() {
   if (!user || user.role !== "seeker") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
+  if (isShowcaseMode()) {
+    const cvs = getShowcaseCvs().filter((c) => c.seeker_id === 1);
+    return NextResponse.json({ cvs });
+  }
   const rows = db
     .prepare(
       `SELECT c.id, c.specialization, c.filename, c.created_at,
               (SELECT COUNT(*) FROM cv_chunks WHERE cv_id = c.id) AS chunk_count
-       FROM cvs c
-       WHERE c.seeker_id = ?
-       ORDER BY c.created_at DESC`
+       FROM cvs c WHERE c.seeker_id = ? ORDER BY c.created_at DESC`
     )
     .all(user.id);
   return NextResponse.json({ cvs: rows });
@@ -41,14 +44,18 @@ export async function POST(req: Request) {
     const file = form.get("file");
     if (file instanceof File && file.size > 0) {
       filename = file.name;
-      const buf = Buffer.from(await file.arrayBuffer());
-      try {
-        rawText = await extractPdfText(buf);
-      } catch (e) {
-        if (e instanceof PdfTooSparseError) {
-          return NextResponse.json({ error: e.message }, { status: 400 });
+      if (isShowcaseMode()) {
+        rawText = `Showcase CV for ${filename}`;
+      } else {
+        const buf = Buffer.from(await file.arrayBuffer());
+        try {
+          rawText = await extractPdfText(buf);
+        } catch (e) {
+          if (e instanceof PdfTooSparseError) {
+            return NextResponse.json({ error: e.message }, { status: 400 });
+          }
+          return NextResponse.json({ error: "Could not parse PDF." }, { status: 400 });
         }
-        return NextResponse.json({ error: "Could not parse PDF." }, { status: 400 });
       }
     } else if (pasted) {
       rawText = pasted;
@@ -63,34 +70,24 @@ export async function POST(req: Request) {
   if (!specialization) {
     return NextResponse.json({ error: "specialization is required" }, { status: 400 });
   }
+
+  if (isShowcaseMode()) {
+    return NextResponse.json({ cv_id: 99, chunks: 12, showcase: true });
+  }
+
   if (rawText.length < 100) {
     return NextResponse.json({ error: "CV text is too short (need ≥100 chars)" }, { status: 400 });
   }
-
   const count = (
-    db
-      .prepare(
-        "SELECT COUNT(*) AS n FROM cvs WHERE seeker_id = ? AND specialization = ?"
-      )
-      .get(user.id, specialization) as { n: number }
+    db.prepare("SELECT COUNT(*) AS n FROM cvs WHERE seeker_id = ? AND specialization = ?").get(user.id, specialization) as { n: number }
   ).n;
   if (count >= MAX_PER_SPEC) {
-    return NextResponse.json(
-      { error: `Limit reached: ${MAX_PER_SPEC} CVs per specialization.` },
-      { status: 409 }
-    );
+    return NextResponse.json({ error: `Limit reached: ${MAX_PER_SPEC} CVs per specialization.` }, { status: 409 });
   }
-
   try {
-    const result = await ingestCv({
-      seekerId: user.id,
-      specialization,
-      filename,
-      rawText,
-    });
+    const result = await ingestCv({ seekerId: user.id, specialization, filename, rawText });
     return NextResponse.json({ cv_id: result.cvId, chunks: result.chunkCount });
   } catch (e) {
-    const msg = e instanceof Error ? e.message : "Ingest failed";
-    return NextResponse.json({ error: msg }, { status: 502 });
+    return NextResponse.json({ error: e instanceof Error ? e.message : "Ingest failed" }, { status: 502 });
   }
 }
