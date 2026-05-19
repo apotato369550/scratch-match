@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=900">
+  <title>Mia Reyes — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --navy-darkest: #0a162e;
+  --navy-dark:    #0e1f3f;
+  --navy-mid:     #1f3f7d;
+  --gold:         #d4a017;
+  --gold-light:   #e7c45a;
+  --gold-dark:    #a8800f;
+  --parchment:    #f7f5ee;
+  --sand:         #efe9d8;
+  --white:        #ffffff;
+  --ink-soft:     #1f2937;
+}
+*, *::before, *::after {
+  box-sizing: border-box; margin: 0; padding: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+@media screen {
+  body { background: #c8c8c8; font-family: 'Inter', system-ui, sans-serif; display: flex; justify-content: center; padding: 32px 16px 64px; }
+  .sheet { box-shadow: 0 14px 40px rgba(0,0,0,0.40); }
+}
+@media print {
+  @page { size: 8.27in 11.69in; margin: 0; }
+  body { background: none; padding: 0; margin: 0; }
+  .sheet { width: 8.27in !important; height: 11.69in !important; box-shadow: none !important; }
+}
+.sheet { width: 8.27in; min-height: 11.69in; background: var(--white); font-family: 'Inter', system-ui, sans-serif; display: grid; grid-template-columns: 2.5in 1fr; overflow: hidden; }
+
+/* Sidebar */
+.side { background: var(--navy-darkest); color: var(--white); padding: 36px 22px 28px; position: relative; overflow: hidden; }
+.side::before { content: ''; position: absolute; top: -100px; left: -50px; width: 360px; height: 360px; background: radial-gradient(ellipse at center, rgba(212,160,23,0.16) 0%, transparent 70%); pointer-events: none; }
+.avatar { width: 96px; height: 96px; border-radius: 50%; background: var(--gold); color: var(--navy-darkest); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 900; margin: 0 auto 18px; box-shadow: 0 6px 18px rgba(0,0,0,0.45); position: relative; }
+
+.side-section { margin-top: 22px; position: relative; }
+.side-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid rgba(212,160,23,0.3); }
+.contact-row { display: flex; flex-direction: column; padding: 4px 0; }
+.contact-row .k { font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+.contact-row .v { font-size: 10px; color: rgba(255,255,255,0.92); word-break: break-word; line-height: 1.4; }
+
+.skills-list { display: flex; flex-wrap: wrap; gap: 4px; }
+.skills-list .pill { font-size: 9px; font-weight: 600; background: rgba(255,255,255,0.08); border: 1px solid rgba(212,160,23,0.25); border-radius: 3px; padding: 3px 7px; color: rgba(255,255,255,0.88); }
+
+.cert-list { list-style: none; padding: 0; }
+.cert-list li { font-size: 9.5px; color: rgba(255,255,255,0.78); line-height: 1.4; padding: 4px 0 4px 12px; position: relative; border-bottom: 1px dotted rgba(255,255,255,0.12); }
+.cert-list li:last-child { border-bottom: none; }
+.cert-list li::before { content: '›'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+.interests { font-size: 9.5px; color: rgba(255,255,255,0.78); line-height: 1.5; font-style: italic; }
+
+/* Main */
+.main { padding: 36px 32px 28px; display: flex; flex-direction: column; gap: 18px; background: var(--white); }
+.title-block { border-bottom: 3px solid var(--gold); padding-bottom: 14px; }
+.eyebrow { font-size: 9px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 6px; }
+.name { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900; line-height: 1; color: var(--navy-darkest); letter-spacing: -0.02em; }
+.headline { margin-top: 6px; font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; color: var(--gold-dark); }
+.tagline { margin-top: 6px; font-size: 10.5px; color: var(--ink-soft); line-height: 1.5; }
+
+.section-label { font-size: 9.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: rgba(168,128,15,0.3); }
+
+.summary p { font-size: 10.5px; color: var(--ink-soft); line-height: 1.6; }
+
+.exp-item { padding: 10px 0; border-bottom: 1px dotted rgba(31,63,125,0.2); }
+.exp-item:last-child { border-bottom: none; }
+.exp-head { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin-bottom: 2px; }
+.exp-title { font-size: 12px; font-weight: 800; color: var(--navy-dark); letter-spacing: -0.01em; }
+.exp-when { font-size: 9px; font-weight: 700; color: var(--gold-dark); letter-spacing: 0.08em; text-transform: uppercase; flex-shrink: 0; }
+.exp-co { font-size: 10.5px; color: var(--navy-mid); font-style: italic; margin-bottom: 6px; }
+.exp-bullets { list-style: none; padding: 0; }
+.exp-bullets li { font-size: 10px; color: var(--ink-soft); line-height: 1.5; padding-left: 12px; position: relative; margin-bottom: 2px; }
+.exp-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+.edu-item { padding: 6px 0; border-bottom: 1px dotted rgba(31,63,125,0.2); }
+.edu-item:last-child { border-bottom: none; }
+.edu-head { display: flex; justify-content: space-between; gap: 14px; align-items: baseline; }
+.edu-school { font-size: 11px; font-weight: 800; color: var(--navy-dark); }
+.edu-when { font-size: 9px; color: var(--gold-dark); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.edu-degree { font-size: 10px; color: var(--ink-soft); font-style: italic; }
+.edu-note { font-size: 9.5px; color: var(--ink-soft); margin-top: 2px; }
+
+.foot { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(31,63,125,0.15); display: flex; align-items: center; gap: 10px; }
+.foot-tag { flex: 1; font-size: 8.5px; color: rgba(31,63,125,0.55); letter-spacing: 0.1em; text-transform: uppercase; }
+.foot-tag strong { color: var(--gold-dark); }
+.foot img { width: 30px; height: 30px; border-radius: 3px; object-fit: cover; opacity: 0.85; }
+</style>
+</head>
+<body>
+  <div class="sheet">
+
+    <aside class="side">
+      <div class="avatar">MR</div>
+
+      <div class="side-section">
+        <div class="side-label">Contact</div>
+        <div class="contact-row"><div class="k">Location</div><div class="v">Talamban, Cebu City</div></div>
+        <div class="contact-row"><div class="k">Email</div><div class="v">mia.reyes.dev@gmail.com</div></div>
+        <div class="contact-row"><div class="k">Phone</div><div class="v">+63 917 555 0142</div></div>
+        <div class="contact-row"><div class="k">GitHub</div><div class="v">github.com/miareyes-dev</div></div>
+      </div>
+
+      <div class="side-section">
+        <div class="side-label">Skills</div>
+        <div class="skills-list"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">TypeScript</span><span class="pill">Python</span><span class="pill">Django</span><span class="pill">Tailwind</span><span class="pill">SQLite</span><span class="pill">Git</span><span class="pill">REST APIs</span><span class="pill">Linux basics</span></div>
+      </div>
+
+      <div class="side-section">
+        <div class="side-label">Certifications</div>
+        <ul class="cert-list"><li>Meta Front-End Developer (Coursera, 2025)</li><li>AWS Cloud Practitioner Foundations (2024)</li></ul>
+      </div>
+
+      <div class="side-section">
+        <div class="side-label">Interests</div>
+        <p class="interests">Indie games, mechanical keyboards, coastal cleanups in Mactan.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <div class="title-block">
+        <div class="eyebrow">Curriculum Vitae · Sample · Scratch Match</div>
+        <h1 class="name">Mia Reyes</h1>
+        <div class="headline">Junior Full-Stack Developer</div>
+        <p class="tagline">Recent USC graduate. Comfortable with React, Python, and shipping small things end-to-end.</p>
+      </div>
+
+      <div class="summary">
+        <div class="section-label">Summary</div>
+        <p>BS Information Systems graduate looking for a first full-time engineering role in Cebu. Two years of side-project experience across React, Next.js, and Django. Briefly interned as a junior frontend dev at a local BPO. Happiest building features users actually touch.</p>
+      </div>
+
+      <div>
+        <div class="section-label">Experience</div>
+        <div class="exp-item"><div class="exp-head"><div class="exp-title">Frontend Intern</div><div class="exp-when">Jun 2025 – Aug 2025</div></div><div class="exp-co">Bayhive BPO Solutions · Cebu IT Park</div><ul class="exp-bullets"><li>Shipped four customer-facing pages in their internal CRM using React and Tailwind.</li><li>Cut average ticket-form load time by 38 percent by replacing legacy modals.</li><li>Owned the on-call rotation for the frontend during a 2-week senior leave.</li></ul></div>
+        <div class="exp-item"><div class="exp-head"><div class="exp-title">Freelance Developer</div><div class="exp-when">2024 – Present</div></div><div class="exp-co">Self-employed · Cebu City (remote)</div><ul class="exp-bullets"><li>Built a booking site for a local barbershop chain (Next.js, SQLite).</li><li>Maintained a Discord bot used by ~600 students for class scheduling.</li></ul></div>
+      </div>
+
+      <div>
+        <div class="section-label">Education</div>
+        <div class="edu-item"><div class="edu-head"><div class="edu-school">University of San Carlos</div><div class="edu-when">2022 – 2026</div></div><div class="edu-degree">BS Information Systems</div><div class="edu-note">Cum Laude · Capstone: AI-assisted job matching pipeline.</div></div>
+      </div>
+
+      <div class="foot">
+        <div class="foot-tag"><strong>Sample CV</strong> · for Scratch Match prototype demo · Group Sigma · CIS 2205</div>
+        <img src="../assets/SDG_8_Logo.png" alt="UN SDG 8">
+      </div>
+
+    </main>
+
+  </div>
+</body>
+</html>

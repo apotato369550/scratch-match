@@ -54,3 +54,5 @@ coverage/
 .eslintcache
 *.tsbuildinfo
 /assignments/
+
+venv/

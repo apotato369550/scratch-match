@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=900">
+  <title>Senior Product Manager · Talent Pipeline — Lakat HR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --navy-darkest: #0a162e;
+  --navy-dark:    #0e1f3f;
+  --navy-mid:     #1f3f7d;
+  --gold:         #d4a017;
+  --gold-light:   #e7c45a;
+  --gold-dark:    #a8800f;
+  --parchment:    #f7f5ee;
+  --sand:         #efe9d8;
+  --white:        #ffffff;
+  --ink-soft:     #1f2937;
+}
+*, *::before, *::after {
+  box-sizing: border-box; margin: 0; padding: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+@media screen {
+  body { background: #c8c8c8; font-family: 'Inter', system-ui, sans-serif; display: flex; justify-content: center; padding: 32px 16px 64px; }
+  .sheet { box-shadow: 0 14px 40px rgba(0,0,0,0.40); }
+}
+@media print {
+  @page { size: 8.27in 11.69in; margin: 0; }
+  body { background: none; padding: 0; margin: 0; }
+  .sheet { width: 8.27in !important; min-height: 11.69in !important; box-shadow: none !important; }
+}
+.sheet { width: 8.27in; min-height: 11.69in; background: var(--white); font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden; }
+
+.stripe { background: var(--gold); color: var(--navy-darkest); text-align: center; padding: 7px 24px; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; flex-shrink: 0; }
+
+.head { background: var(--navy-darkest); color: var(--white); padding: 30px 44px 26px; position: relative; overflow: hidden; flex-shrink: 0; }
+.head::before { content: ''; position: absolute; top: -120px; right: -100px; width: 500px; height: 500px; background: radial-gradient(ellipse at center, rgba(212,160,23,0.18) 0%, transparent 70%); pointer-events: none; }
+.eyebrow { font-size: 9px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; position: relative; }
+.company { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--gold-light); font-style: italic; margin-bottom: 4px; position: relative; }
+.title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; line-height: 1; letter-spacing: -0.02em; position: relative; }
+.company-tag { margin-top: 6px; font-size: 10.5px; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; position: relative; }
+
+.meta-bar { background: var(--navy-dark); color: var(--white); display: grid; grid-template-columns: repeat(4, 1fr); padding: 14px 44px; gap: 14px; border-top: 1px solid rgba(212,160,23,0.18); position: relative; flex-shrink: 0; }
+.meta-cell .k { font-size: 8px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+.meta-cell .v { font-size: 10px; color: rgba(255,255,255,0.92); line-height: 1.4; font-weight: 600; }
+
+.body { padding: 26px 44px 30px; flex: 1; display: flex; flex-direction: column; gap: 20px; background: var(--white); }
+
+.section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: rgba(168,128,15,0.3); }
+
+.summary { background: var(--parchment); border-left: 3px solid var(--gold); border-radius: 0 5px 5px 0; padding: 14px 16px; }
+.summary p { font-size: 11px; color: var(--ink-soft); line-height: 1.6; }
+
+.list-block ul { list-style: none; padding: 0; }
+.list-block li { font-size: 10.5px; color: var(--ink-soft); line-height: 1.5; padding: 5px 0 5px 16px; position: relative; border-bottom: 1px dotted rgba(31,63,125,0.18); }
+.list-block li:last-child { border-bottom: none; }
+.list-block li::before { content: '›'; position: absolute; left: 0; color: var(--gold); font-weight: 700; font-size: 13px; line-height: 1.2; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.perks-strip { background: var(--navy-dark); color: var(--white); border-radius: 6px; padding: 14px 18px; }
+.perks-strip .label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.perks-strip ul { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; }
+.perks-strip li { font-size: 10px; color: rgba(255,255,255,0.85); line-height: 1.45; padding-left: 14px; position: relative; }
+.perks-strip li::before { content: '✦'; position: absolute; left: 0; color: var(--gold-light); font-size: 9px; top: 2px; }
+
+.apply-strip { background: var(--sand); border: 2px solid var(--gold); border-radius: 6px; padding: 12px 18px; display: flex; align-items: center; gap: 14px; }
+.apply-strip .label { font-family: 'Playfair Display', serif; font-size: 12px; font-style: italic; color: var(--navy-dark); flex: 1; }
+.apply-strip .label strong { color: var(--gold-dark); font-style: normal; display: block; font-size: 13px; margin-bottom: 2px; letter-spacing: 0.04em; text-transform: uppercase; }
+.apply-strip img { width: 50px; height: 50px; border-radius: 4px; object-fit: contain; background: var(--white); padding: 3px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
+
+.foot { background: var(--navy-dark); color: var(--white); padding: 12px 44px; flex-shrink: 0; display: flex; align-items: center; gap: 14px; border-top: 3px solid var(--gold); }
+.foot-tag { flex: 1; }
+.foot-tag .t { font-family: 'Playfair Display', serif; font-size: 11px; font-style: italic; color: var(--gold-light); margin-bottom: 2px; }
+.foot-tag .g { font-size: 9.5px; font-weight: 700; letter-spacing: 0.04em; }
+.foot-tag .c { font-size: 8px; color: rgba(255,255,255,0.45); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+.foot img { width: 44px; height: 44px; border-radius: 4px; object-fit: cover; }
+</style>
+</head>
+<body>
+  <div class="sheet">
+
+    <div class="stripe">Job Posting · Sample · Scratch Match · LHR-PM-2026-008</div>
+
+    <div class="head">
+      <div class="eyebrow">Posted May 2026</div>
+      <div class="company">Lakat HR</div>
+      <h1 class="title">Senior Product Manager · Talent Pipeline</h1>
+      <div class="company-tag">Filipino HR SaaS · ~70 employees</div>
+    </div>
+
+    <div class="meta-bar">
+      <div class="meta-cell"><div class="k">Location</div><div class="v">Manila · Cebu remote OK</div></div>
+      <div class="meta-cell"><div class="k">Type</div><div class="v">Full-time · Permanent</div></div>
+      <div class="meta-cell"><div class="k">Salary</div><div class="v">₱150,000 – ₱200,000 / month</div></div>
+      <div class="meta-cell"><div class="k">Reference</div><div class="v">LHR-PM-2026-008</div></div>
+    </div>
+
+    <div class="body">
+
+      <div class="summary">
+        <div class="section-label">About the Role</div>
+        <p>Lakat is the HR platform of choice for ~1,200 Filipino SMEs. We are hiring a senior PM to own the Talent Pipeline area: sourcing, candidate review, interview scheduling. You will work with a designer, four engineers, and our head of customer success.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="list-block">
+          <div class="section-label">Responsibilities</div>
+          <ul><li>Own the Talent Pipeline roadmap end-to-end.</li><li>Talk to at least four customers a week, in person where possible.</li><li>Write clear product specs and equally clear killed-feature postmortems.</li><li>Partner with the GTM team on launch and pricing decisions.</li></ul>
+        </div>
+        <div class="list-block">
+          <div class="section-label">What We're Looking For</div>
+          <ul><li>5+ years in product management, ideally 2+ at a B2B SaaS.</li><li>Track record of shipping features that customers actually adopt.</li><li>Comfortable saying no to internal stakeholders, with reasons.</li><li>Working knowledge of HR or recruiting workflows is a strong plus.</li></ul>
+        </div>
+      </div>
+
+      <div class="list-block">
+        <div class="section-label">Nice to Have</div>
+        <ul><li>Experience with AI-assisted product features.</li><li>Data fluency: SQL, basic statistics, healthy skepticism.</li></ul>
+      </div>
+
+      <div class="perks-strip">
+        <div class="label">Perks &amp; Benefits</div>
+        <ul><li>Equity grant on day one, four-year vest.</li><li>Quarterly travel budget for in-person customer visits.</li><li>Top-tier HMO + dental + mental health coverage.</li></ul>
+      </div>
+
+      <div class="apply-strip">
+        <div class="label"><strong>How to Apply</strong>Submit CV and one product writing sample via the Scratch Match portal.</div>
+        <img src="../assets/QR_code.png" alt="Apply via Scratch Match">
+      </div>
+
+    </div>
+
+    <div class="foot">
+      <div class="foot-tag">
+        <div class="t">Local. Private. Built for Cebu.</div>
+        <div class="g">Sample posting · Scratch Match · Group Sigma · CIS 2205</div>
+        <div class="c">University of San Carlos · 2026</div>
+      </div>
+      <img src="../assets/SDG_8_Logo.png" alt="UN SDG 8">
+    </div>
+
+  </div>
+</body>
+</html>

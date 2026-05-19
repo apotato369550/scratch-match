@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Scrum in Action — PDF Generator
+Scrum in Action - PDF Generator
 CIS 2205 | Mobile Book Reservation System Sprint Exercise
 Run: python scrum_in_action.py
 Deps: pip install fpdf2 matplotlib pillow
@@ -18,7 +18,7 @@ from fpdf import FPDF
 from fpdf.enums import XPos, YPos
 
 # ════════════════════════════════════════════════════════════
-# CONFIG — edit to match your group
+# CONFIG - edit to match your group
 # ════════════════════════════════════════════════════════════
 
 GROUP = {
@@ -28,7 +28,7 @@ GROUP = {
     "Lead Developer/Tester": "John Andre Yap",
 }
 COURSE   = "CIS 2205"
-SECTION  = "MW 1:30 PM – 3:00 PM"
+SECTION  = "MW 1:30 PM - 3:00 PM"
 DATE_STR = "April 15, 2026"
 OUT_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                         "ScrumInAction_JohnAndreYap.pdf")
@@ -50,108 +50,117 @@ BACKLOG = [
     {
         "rank": 1,
         "story": (
-            "As a library member, I want to search for books by title or author "
-            "so that I can quickly find what I'm looking for."
+            "As a Job Seeker, I want to upload my CV with a specialization label "
+            "so that the system can index it and use it for AI-powered job matching."
         ),
         "priority": "High",
         "rationale": (
-            "You can't reserve what you can't find. This is the entry point "
-            "to every other feature. It goes first."
+            "Without CVs in the system there is nothing to match. "
+            "This is the foundation every other feature builds on. It goes first."
         ),
     },
     {
         "rank": 2,
         "story": (
-            "As a library member, I want to reserve a book using my phone "
-            "so that I can secure it before making a trip to the library."
+            "As a Job Seeker, I want to see a ranked list of matching jobs for my "
+            "uploaded CV so that I can focus on the most relevant opportunities in Cebu."
         ),
         "priority": "High",
         "rationale": (
-            "This is the core feature. The entire system exists for this. "
-            "It ships in the same sprint as search."
+            "This is the core value proposition of the entire platform. "
+            "It ships in the same sprint as CV upload."
         ),
     },
     {
         "rank": 3,
         "story": (
-            "As a library member, I want to view my current reservations "
-            "so that I know what I have waiting for me."
+            "As an Employer, I want to post a job listing "
+            "so that matching candidates can discover it through the AI system."
         ),
         "priority": "Medium",
         "rationale": (
-            "Useful, but useless without the first two stories done. "
-            "Goes in the next sprint."
+            "Needed to populate the job pool, but the seeker side "
+            "must be working first. Goes in the next sprint."
         ),
     },
     {
         "rank": 4,
         "story": (
-            "As a librarian, I want to manage book availability "
-            "so that reservation data stays accurate."
+            "As an Administrator, I want to view and moderate all CVs and job postings "
+            "so that I can keep the platform data accurate and clean."
         ),
         "priority": "Low",
         "rationale": (
-            "Admin-only function, low frequency of use. "
-            "Can come after the member-facing features are solid."
+            "Admin tooling comes after the core seeker and employer flows are solid. "
+            "Low frequency of use."
         ),
     },
 ]
 
 SPRINT_TASKS = [
     {
-        "story": "Story 1 — Search for Books",
+        "story": "Story 1 - CV Upload and Indexing",
         "tasks": [
-            ("Design the search bar UI — input field, results list, loading and empty states", "Done"),
-            ("Build the backend API endpoint to query the books database", "Done"),
-            ("Implement filters by title, author, and category", "In Progress"),
-            ("Connect the frontend to the API and render results on screen", "In Progress"),
+            ("Design the CV upload UI: file picker, specialization dropdown, and upload progress feedback", "Done"),
+            ("Build the PDF text extraction pipeline using PyMuPDF", "Done"),
+            ("Chunk extracted text and embed via nomic-embed-text, store vectors in Qdrant cv_chunks", "In Progress"),
+            ("Save Qdrant point IDs in SQLite for reliable cleanup when a CV is deleted", "In Progress"),
         ],
     },
     {
-        "story": "Story 2 — Reserve a Book",
+        "story": "Story 2 - AI Job Matching",
         "tasks": [
-            ("Add a Reserve button to the book detail screen", "To-Do"),
-            ("Write reservation logic — record user ID, book ID, and timestamp in the database", "To-Do"),
-            ("Update the book's availability status when a reservation is created", "In Progress"),
-            ("Show a confirmation screen after a successful reservation", "To-Do"),
+            ("Design the match results UI: ranked job cards with similarity scores", "To-Do"),
+            ("Build the matching endpoint: embed job requirements, query cv_chunks, aggregate top-3 scores", "To-Do"),
+            ("Integrate match results into the seeker dashboard page", "In Progress"),
+            ("Handle the empty state when no open jobs match the uploaded CV", "To-Do"),
         ],
     },
 ]
 
 REFL_BENEFIT = (
-    "In a Waterfall project, the library would not see anything working until "
-    "the entire system was complete. If the search feature turned out to be "
-    "confusing or built on the wrong assumptions, it would be too late and too "
-    "expensive to fix. With Scrum, we ship a working Search and Reservation "
-    "feature at the end of the first two weeks. The library can actually use it, "
-    "tell us what's wrong, and we correct it in the next sprint — before it "
-    "compounds into a larger problem. That early feedback loop is the main reason "
-    "you choose Scrum over Waterfall for a project like this."
+    "One of the biggest advantages Scrum gives us over Waterfall is the ability "
+    "to catch problems early, when they are still cheap to fix. In a Waterfall "
+    "approach, we would have to build the entire platform - CV upload, the "
+    "embedding pipeline, Qdrant integration, the matching algorithm, the employer "
+    "portal, and the admin panel - before a single real user ever touched it. If "
+    "the matching turned out to be inaccurate, or the CV upload flow was "
+    "confusing, we would only find out at the very end.\n\n"
+    "With Scrum, we deliver a working CV upload and job matching feature in just "
+    "the first sprint. A job seeker in Cebu can try it, tell us what feels off, "
+    "and we fix it in the next cycle. That kind of continuous feedback loop is "
+    "exactly what a platform like Scratch Match needs, where the quality of the "
+    "AI recommendations is something you can only really judge by using it."
 )
 
 REFL_STANDUP = (
-    "Each day we answer three questions in under 15 minutes: "
-    "What did I finish yesterday? What am I working on today? "
-    "Is anything blocking me?\n\n"
-    "For this sprint, a developer might say: 'I finished the search API endpoint "
-    "yesterday. Today I'm connecting it to the frontend. No blockers.' "
-    "Another might say: 'I'm stuck on the database schema for reservations — "
-    "I need a quick review before I write any more code.' "
-    "That second case is exactly what the Standup is for: catching blockers "
-    "before they quietly kill progress."
+    "The Daily Standup keeps the team aligned without turning into a full "
+    "meeting. Each member answers three questions: What did I finish yesterday? "
+    "What am I working on today? Is anything blocking me? The whole thing runs "
+    "in under 15 minutes.\n\n"
+    "During this sprint, it might sound like: one developer says they wrapped up "
+    "the PDF extraction pipeline and are now wiring the chunking logic into the "
+    "Qdrant collection with no blockers. Another mentions they have hit a wall on "
+    "the score aggregation query because the team has not agreed on a ranking "
+    "formula yet, and they need a quick sync before writing more code. That "
+    "second update is exactly the kind of thing the Standup exists to surface - "
+    "a blocker that would otherwise silently eat into the sprint without anyone "
+    "noticing until it is too late."
 )
 
 REFL_RETRO = (
-    "At the end of the sprint the team meets and answers three questions: "
-    "What went well? What didn't? What do we change next time?\n\n"
-    "For this sprint, we might say:\n"
-    "— The search feature shipped on time because we designed the UI and "
-    "the API independently and integrated at the end. Keep that approach.\n"
-    "— The reservation database schema needed two rewrites because we dove "
-    "into code before agreeing on the structure. Next sprint: sketch the "
-    "schema on paper before anyone writes a line of SQL.\n\n"
-    "The retrospective is not a blame session. It is where the team actually "
-    "gets smarter between sprints."
+    "The Sprint Retrospective is a short meeting at the end of each sprint where "
+    "the team asks three questions: What went well? What did not go well? What "
+    "do we change next time? It is not a blame session - it is how the team "
+    "actually improves from one sprint to the next.\n\n"
+    "For this sprint, we would note that the CV upload feature shipped on time "
+    "because we kept text extraction and embedding as separate, independent tasks "
+    "and only integrated them at the end. That approach worked well and we would "
+    "carry it forward. On the other hand, the Qdrant score aggregation needed a "
+    "full redesign mid-sprint because we jumped into code before the team agreed "
+    "on a ranking formula. Going into the next sprint, we would make it a rule to "
+    "sketch any non-trivial algorithm on paper and get a team sign-off before "
+    "anyone starts implementing it."
 )
 
 # ════════════════════════════════════════════════════════════
@@ -221,7 +230,7 @@ def make_scrum_board() -> str:
         "To-Do": [], "In Progress": [], "Done": []
     }
     for s in SPRINT_TASKS:
-        short = s["story"].split(" — ")[1]
+        short = s["story"].split(" - ")[1]
         for task, status in s["tasks"]:
             buckets[status].append((short, task))
 
@@ -231,7 +240,7 @@ def make_scrum_board() -> str:
 
     fig, axes = plt.subplots(1, 3, figsize=(12, 4.5), facecolor="white")
     fig.subplots_adjust(wspace=0.06, left=0.01, right=0.99, top=0.86, bottom=0.02)
-    fig.suptitle("Sprint Scrum Board — Currently In Progress",
+    fig.suptitle("Scratch Match Sprint Board - Currently In Progress",
                  fontsize=13, fontweight="bold", color=NAVY_H, y=0.99)
 
     for ax, col in zip(axes, order):
@@ -377,7 +386,7 @@ def build():
     pdf.set_xy(14, 24)
     pdf.set_font("Helvetica", "I", 11)
     pdf.set_text_color(200, 175, 100)
-    pdf.cell(0, 6, "Mobile Book Reservation System — Sprint Planning Exercise",
+    pdf.cell(0, 6, "Scratch Match: AI Job Matcher - Sprint Planning Exercise",
              new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
     pdf.set_xy(14, 34)
@@ -399,11 +408,11 @@ def build():
     pdf.ln(6)
 
     # ── Part 1: Backlog Grooming ──────────────────────────────
-    pdf.section_bar("Part 1 — Backlog Grooming")
-    pdf.h1("Epic Breakdown: Mobile Book Reservation System")
+    pdf.section_bar("Part 1 - Backlog Grooming")
+    pdf.h1("Epic Breakdown: Scratch Match - AI-Assisted Job Matcher")
     pdf.body(
-        'The "Mobile Book Reservation System" epic was broken into four user '
-        'stories and ranked below from highest to lowest priority.',
+        'The "Scratch Match" epic was broken into four user stories '
+        'and ranked below from highest to lowest priority.',
         size=10.5,
     )
     pdf.ln(2)
@@ -444,13 +453,13 @@ def build():
 
     # ── Part 2: Sprint Planning ───────────────────────────────
     pdf.add_page()
-    pdf.section_bar("Part 2 — Sprint Planning")
+    pdf.section_bar("Part 2 - Sprint Planning")
 
     pdf.h1("Selected Stories for the Two-Week Sprint")
     pdf.body(
         "We selected the two highest-priority stories from the backlog:\n"
-        "  1.  Story 1 — Search for Books\n"
-        "  2.  Story 2 — Reserve a Book",
+        "  1.  Story 1 - CV Upload and Indexing\n"
+        "  2.  Story 2 - AI Job Matching",
         indent=4,
     )
     pdf.ln(3)
@@ -473,12 +482,12 @@ def build():
             pdf.set_x(14)
 
             y0 = pdf.get_y()
-            # Task cell (multi-cell, width 136)
+            # Draw task cell; YPos.NEXT so get_y() reflects the actual bottom
             pdf.multi_cell(136, 6, task, border=1, fill=True,
-                           new_x=XPos.RIGHT, new_y=YPos.TOP)
-            y1 = pdf.get_y()
-            row_h = y1 - y0
+                           new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+            row_h = pdf.get_y() - y0
 
+            # Draw status cell at the same row, same height
             pdf.set_xy(14 + 136, y0)
             pdf.set_font("Helvetica", "B", 9)
             pdf.cell(46, row_h, status, border=1, fill=True,
@@ -486,7 +495,7 @@ def build():
         pdf.ln(5)
 
     # Scrum board image
-    pdf.h1("Visual Scrum Board (Mid-Sprint Snapshot)", size=11)
+    pdf.h1("Visual Scrum Board - Mid-Sprint Snapshot", size=11)
     board_w = 182
     board_x = (210 - board_w) / 2
     pdf.image(board, x=board_x, w=board_w)
@@ -494,7 +503,7 @@ def build():
 
     # ── Part 3: Velocity ──────────────────────────────────────
     pdf.add_page()
-    pdf.section_bar("Part 3 — Velocity & Forecasting")
+    pdf.section_bar("Part 3 - Velocity & Forecasting")
 
     pdf.h1("Calculating Average Velocity")
     pdf.ln(1)
@@ -545,7 +554,7 @@ def build():
 
     # ── Part 4: Reflection ────────────────────────────────────
     pdf.add_page()
-    pdf.section_bar("Part 4 — Reflection")
+    pdf.section_bar("Part 4 - Reflection")
 
     pdf.h1("1.  One Benefit of Scrum Over Waterfall")
     pdf.body(REFL_BENEFIT)

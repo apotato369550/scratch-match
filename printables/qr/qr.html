@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=900">
+  <title>Scratch Match — Feedback QR (A4)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-darkest: #0a162e;
+      --navy-dark:    #0e1f3f;
+      --navy-mid:     #1f3f7d;
+      --gold:         #d4a017;
+      --gold-light:   #e7c45a;
+      --gold-dark:    #a8800f;
+      --parchment:    #f7f5ee;
+      --sand:         #efe9d8;
+      --white:        #ffffff;
+      --ink-soft:     #1f2937;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box; margin: 0; padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      color-adjust: exact;
+    }
+
+    @media screen {
+      body {
+        background: #c8c8c8;
+        font-family: 'Inter', system-ui, sans-serif;
+        display: flex;
+        justify-content: center;
+        padding: 32px 16px 64px;
+      }
+      .sheet { box-shadow: 0 14px 40px rgba(0,0,0,0.40); }
+    }
+
+    @media print {
+      @page { size: 8.27in 11.69in; margin: 0; }
+      body { background: none; padding: 0; margin: 0; }
+      .sheet { width: 8.27in !important; height: 11.69in !important; box-shadow: none !important; }
+    }
+
+    .sheet {
+      width: 8.27in;
+      height: 11.69in;
+      background: var(--white);
+      font-family: 'Inter', system-ui, sans-serif;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-stripe {
+      background: var(--gold);
+      color: var(--navy-darkest);
+      text-align: center;
+      padding: 9px 24px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .header {
+      background: var(--navy-darkest);
+      color: var(--white);
+      padding: 38px 56px 32px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -160px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(212,160,23,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+    .title .accent { color: var(--gold-light); display: inline; }
+    .sub {
+      margin-top: 14px;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: rgba(231,196,90,0.9);
+      position: relative;
+    }
+    .lede {
+      margin-top: 12px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.55;
+      max-width: 540px;
+      position: relative;
+    }
+
+    .body {
+      background: var(--parchment);
+      padding: 40px 56px 32px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .qr-frame {
+      width: 360px;
+      height: 360px;
+      background: var(--white);
+      padding: 22px;
+      border: 2px solid var(--navy-dark);
+      border-radius: 10px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+      position: relative;
+    }
+    .qr-frame::before, .qr-frame::after {
+      content: '';
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border: 3px solid var(--gold);
+    }
+    .qr-frame::before { top: -6px; left: -6px; border-right: none; border-bottom: none; }
+    .qr-frame::after  { bottom: -6px; right: -6px; border-left: none; border-top: none; }
+    .qr-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .scan-cta {
+      margin-top: 30px;
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--navy-dark);
+      letter-spacing: -0.01em;
+    }
+    .scan-cta em { color: var(--gold-dark); font-style: italic; }
+    .scan-sub {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      max-width: 480px;
+    }
+
+    .steps {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      width: 100%;
+    }
+    .step {
+      background: var(--white);
+      padding: 14px 14px 12px;
+      border-left: 3px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      text-align: left;
+    }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--gold-dark);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .step-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 3px;
+      letter-spacing: -0.01em;
+    }
+    .step-desc {
+      font-size: 10px;
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+
+    .footer {
+      background: var(--navy-dark);
+      color: var(--white);
+      padding: 18px 56px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+      border-top: 4px solid var(--gold);
+    }
+    .footer-tag {
+      flex: 1;
+    }
+    .footer-tag .t {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-style: italic;
+      color: var(--gold-light);
+      margin-bottom: 3px;
+    }
+    .footer-tag .g {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .footer-tag .c {
+      font-size: 9px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+    .footer img {
+      width: 56px;
+      height: 56px;
+      border-radius: 4px;
+      object-fit: cover;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+
+    <div class="top-stripe">
+      Scratch Match · Prototype Feedback · Group Sigma · CIS 2205
+    </div>
+
+    <div class="header">
+      <div class="eyebrow">We Want Your Honest Take</div>
+      <h1 class="title">Tried it? <span class="accent">Tell us.</span></h1>
+      <p class="sub">Two minutes. Anonymous. Genuinely useful.</p>
+      <p class="lede">
+        Scratch Match is a working prototype, not a finished product. Your feedback shapes the next iteration: what felt slow, what felt magic, what was confusing, what should exist next.
+      </p>
+    </div>
+
+    <div class="body">
+      <div class="qr-frame">
+        <img src="../assets/QR_code.png" alt="Scratch Match prototype feedback form QR code">
+      </div>
+
+      <div class="scan-cta">Scan to <em>send feedback</em>.</div>
+      <p class="scan-sub">
+        Point your phone camera at the code above. Opens the prototype feedback form in your browser. No login, no account, no ads.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">Open Camera</div>
+          <div class="step-desc">Any modern phone camera reads QR codes natively.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">Point &amp; Tap</div>
+          <div class="step-desc">Aim at the code, tap the link banner that pops up.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">Be Honest</div>
+          <div class="step-desc">Even one harsh sentence is more useful than ten polite ones.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-tag">
+        <div class="t">Local. Private. Built for Cebu.</div>
+        <div class="g">Group Sigma · CIS 2205 · University of San Carlos</div>
+        <div class="c">Cebu City · 2026</div>
+      </div>
+      <img src="../assets/SDG_8_Logo.png" alt="UN SDG 8 — Decent Work">
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=900">
+  <title>Scratch Match — Persona · Mia Reyes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --navy-darkest: #0a162e;
+  --navy-dark:    #0e1f3f;
+  --navy-mid:     #1f3f7d;
+  --gold:         #d4a017;
+  --gold-light:   #e7c45a;
+  --gold-dark:    #a8800f;
+  --parchment:    #f7f5ee;
+  --sand:         #efe9d8;
+  --white:        #ffffff;
+  --ink-soft:     #1f2937;
+}
+*, *::before, *::after {
+  box-sizing: border-box; margin: 0; padding: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+@media screen {
+  body { background: #c8c8c8; font-family: 'Inter', system-ui, sans-serif; display: flex; justify-content: center; padding: 32px 16px 64px; }
+  .sheet { box-shadow: 0 14px 40px rgba(0,0,0,0.40); }
+}
+@media print {
+  @page { size: 8.27in 11.69in; margin: 0; }
+  body { background: none; padding: 0; margin: 0; }
+  .sheet { width: 8.27in !important; height: 11.69in !important; box-shadow: none !important; }
+}
+.sheet { width: 8.27in; height: 11.69in; background: var(--white); font-family: 'Inter', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden; }
+
+.stripe { background: var(--gold); color: var(--navy-darkest); text-align: center; padding: 7px 24px; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; flex-shrink: 0; }
+
+.hero { background: var(--navy-darkest); color: var(--white); padding: 28px 40px 24px; display: flex; align-items: center; gap: 22px; flex-shrink: 0; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 500px; background: radial-gradient(ellipse at center, rgba(212,160,23,0.18) 0%, transparent 70%); pointer-events: none; }
+.avatar { width: 110px; height: 110px; border-radius: 50%; background: var(--gold); color: var(--navy-darkest); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 900; flex-shrink: 0; box-shadow: 0 6px 20px rgba(0,0,0,0.4); position: relative; }
+.avatar .badge { position: absolute; bottom: -6px; right: -6px; width: 36px; height: 36px; border-radius: 50%; background: var(--navy-darkest); color: var(--gold-light); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 900; border: 2px solid var(--gold); }
+.hero-text { flex: 1; position: relative; }
+.hero-eyebrow { font-size: 9px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 7px; }
+.hero-name { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; line-height: 1; letter-spacing: -0.02em; }
+.hero-role { margin-top: 6px; font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: var(--gold-light); }
+.hero-tag { margin-top: 8px; font-size: 11px; color: rgba(255,255,255,0.72); line-height: 1.5; max-width: 380px; }
+
+.body { padding: 24px 40px 24px; flex: 1; display: flex; flex-direction: column; gap: 18px; }
+
+.section-label { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: rgba(168,128,15,0.28); }
+
+.demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; }
+.demo-row { display: flex; gap: 10px; padding: 5px 0; border-bottom: 1px dotted rgba(31,63,125,0.22); font-size: 10.5px; }
+.demo-row .k { color: var(--gold-dark); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 8.5px; min-width: 78px; padding-top: 2px; }
+.demo-row .v { color: var(--ink-soft); flex: 1; line-height: 1.4; }
+
+.background-block { background: var(--parchment); border-left: 3px solid var(--gold); border-radius: 0 5px 5px 0; padding: 14px 16px; }
+.background-block p { font-size: 11px; color: var(--ink-soft); line-height: 1.6; }
+
+.want-block { background: var(--navy-dark); color: var(--white); border-radius: 6px; padding: 16px 20px; position: relative; }
+.want-block::before { content: '"'; position: absolute; top: 4px; left: 12px; font-family: 'Playfair Display', serif; font-size: 60px; color: var(--gold); line-height: 1; opacity: 0.35; }
+.want-block .label { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 5px; padding-left: 32px; }
+.want-block .text { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; line-height: 1.45; color: var(--gold-light); padding-left: 32px; }
+
+.gf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.gf-col h4 { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: var(--navy-dark); margin-bottom: 8px; }
+.gf-col h4 em { color: var(--gold-dark); font-style: italic; }
+.gf-col ul { list-style: none; padding: 0; }
+.gf-col li { font-size: 10px; color: var(--ink-soft); line-height: 1.45; padding: 4px 0 4px 14px; position: relative; border-bottom: 1px dotted rgba(31,63,125,0.18); }
+.gf-col li::before { content: '›'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+.gf-col li:last-child { border-bottom: none; }
+
+.image-strip { display: flex; align-items: center; gap: 12px; background: var(--parchment); padding: 10px 14px; border-radius: 6px; border: 1px solid rgba(31,63,125,0.15); }
+.image-strip img { width: 72px; height: 72px; object-fit: cover; border-radius: 4px; border: 1px solid rgba(31,63,125,0.18); flex-shrink: 0; background: var(--white); }
+.image-strip .cap { font-size: 9px; color: var(--ink-soft); line-height: 1.45; }
+.image-strip .cap strong { display: block; font-family: 'Playfair Display', serif; font-style: italic; font-size: 12px; color: var(--navy-dark); margin-bottom: 2px; }
+
+.footer { background: var(--navy-dark); color: var(--white); padding: 12px 40px; flex-shrink: 0; display: flex; align-items: center; gap: 14px; border-top: 3px solid var(--gold); }
+.footer-tag { flex: 1; }
+.footer-tag .t { font-family: 'Playfair Display', serif; font-size: 11px; font-style: italic; color: var(--gold-light); margin-bottom: 2px; }
+.footer-tag .g { font-size: 9.5px; font-weight: 700; letter-spacing: 0.04em; }
+.footer-tag .c { font-size: 8px; color: rgba(255,255,255,0.45); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+.footer img { width: 44px; height: 44px; border-radius: 4px; object-fit: cover; }
+</style>
+</head>
+<body>
+  <div class="sheet">
+
+    <div class="stripe">Persona 01 · The Job Seeker</div>
+
+    <div class="hero">
+      <div class="avatar">MR<div class="badge">◇</div></div>
+      <div class="hero-text">
+        <div class="hero-eyebrow">User Persona · Scratch Match</div>
+        <div class="hero-name">Mia Reyes</div>
+        <div class="hero-role">Job Seeker</div>
+        <p class="hero-tag">Recent grad, looking for the right first job in Cebu.</p>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <div>
+        <div class="section-label">Demographics</div>
+        <div class="demo-grid">
+          <div class="demo-row"><div class="k">Age</div><div class="v">23</div></div>
+          <div class="demo-row"><div class="k">Location</div><div class="v">Talamban, Cebu City</div></div>
+          <div class="demo-row"><div class="k">Education</div><div class="v">BS Information Systems, USC (2026)</div></div>
+          <div class="demo-row"><div class="k">Currently</div><div class="v">Freelancing while applying full-time</div></div>
+          <div class="demo-row"><div class="k">Tech Comfort</div><div class="v">High — phone-first, social-savvy</div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label">Background</div>
+        <div class="background-block"><p>Mia graduated last semester near the top of her class. She has built two side projects and interned briefly at a Cebu-based BPO, but the openings she sees online either ask for five years of experience for a junior role or sound nothing like the work she actually did. She has applied to over forty companies in three months and heard back from four.</p></div>
+      </div>
+
+      <div class="want-block">
+        <div class="label">Core Need</div>
+        <div class="text">As a Job Seeker, I want to Upload my CV once, see openings that actually fit my skills, and ask an AI advisor to tailor my résumé to a specific posting.</div>
+      </div>
+
+      <div class="gf-grid">
+        <div class="gf-col">
+          <h4><em>Goals</em></h4>
+          <ul><li>Land a role that uses what she studied, not just any role.</li><li>Stop tailoring her CV from scratch for every application.</li><li>Stay in Cebu near family — relocation is a last resort.</li></ul>
+        </div>
+        <div class="gf-col">
+          <h4><em>Frustrations</em></h4>
+          <ul><li>Generic job boards rank by keyword, not by what she can actually do.</li><li>Most postings hide salary ranges, wasting her time on misfits.</li><li>No clear feedback when she gets rejected — just silence.</li></ul>
+        </div>
+      </div>
+
+      <div class="image-strip">
+        <img src="../assets/home.png" alt="Seeker Home Dashboard">
+        <div class="cap">
+          <strong>Seeker Home Dashboard</strong>
+          A view from the Scratch Match prototype that this persona touches.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-tag">
+        <div class="t">Local. Private. Built for Cebu.</div>
+        <div class="g">Group Sigma · CIS 2205 · University of San Carlos</div>
+        <div class="c">Cebu City · 2026</div>
+      </div>
+      <img src="../assets/SDG_8_Logo.png" alt="UN SDG 8">
+    </div>
+
+  </div>
+</body>
+</html>
