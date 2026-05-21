@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <title>Scratch Match — Standee / Tarpaulin (2ft Ã— 6ft)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* â”€â”€ Variables â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    :root {
+      --navy-darkest: #0a162e;
+      --navy-dark:    #0e1f3f;
+      --navy-mid:     #1f3f7d;
+      --navy-light:   #2d56a4;
+      --gold:         #d4a017;
+      --gold-light:   #e7c45a;
+      --gold-dark:    #a8800f;
+      --parchment:    #f7f5ee;
+      --sand:         #efe9d8;
+      --white:        #ffffff;
+      --ink:          #0a0e1a;
+      --ink-soft:     #1f2937;
+      --sdg8-red:     #a21942;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* â”€â”€ Page chrome (screen only) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    @media screen {
+      body {
+        background: #c8c8c8;
+        font-family: 'Inter', system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 32px 24px 64px;
+      }
+      .print-note {
+        max-width: 620px;
+        margin-bottom: 24px;
+        padding: 14px 20px;
+        background: #1a1a1a;
+        color: #e8e8e8;
+        border-radius: 6px;
+        font-size: 12.5px;
+        line-height: 1.6;
+      }
+      .print-note strong { color: #e7c45a; }
+      .print-note code { background: #2a2a2a; padding: 1px 5px; border-radius: 3px; font-size: 11px; }
+    }
+
+    /* â”€â”€ Print: actual physical size â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    @media print {
+      @page { size: 24in 72in; margin: 0; }
+      body { background: none; padding: 0; margin: 0; }
+      .print-note { display: none !important; }
+      .standee {
+        width: 24in !important;
+        height: 72in !important;
+        box-shadow: none !important;
+      }
+    }
+
+    /* â”€â”€ Standee container â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .standee {
+      width: 600px;
+      height: 1800px;
+      background: var(--white);
+      box-shadow: 0 12px 64px rgba(0,0,0,0.45);
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       SECTION 1 · Top stripe
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .stripe-top {
+      background: var(--gold);
+      color: var(--navy-darkest);
+      text-align: center;
+      padding: 6px 20px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       SECTION 2 · Hero
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .hero {
+      background: var(--navy-darkest);
+      padding: 22px 32px 22px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 500px; height: 400px;
+      background: radial-gradient(ellipse at center, rgba(212,160,23,0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    }
+    .hero-text { flex: 1; }
+    .hero-eyebrow {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 54px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+    .hero-title-accent { color: var(--gold-light); display: block; }
+    .hero-subtitle {
+      margin-top: 8px;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(231,196,90,0.85);
+    }
+    .hero-tagline {
+      margin-top: 10px;
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+      max-width: 340px;
+    }
+
+    /* SDG 8 logo image */
+    .sdg8-img {
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
+      border-radius: 4px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+      object-fit: cover;
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       Section labels (shared)
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .section-label {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--sand);
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       SECTION 3 · The Problem (compact)
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .problem {
+      background: var(--white);
+      padding: 18px 32px 20px;
+      flex-shrink: 0;
+      border-bottom: 3px solid var(--gold);
+    }
+    .problem-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .problem-headline span { color: var(--gold-dark); }
+    .problem-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .problem-card {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      padding: 8px 11px;
+      background: var(--parchment);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+    }
+    .problem-icon {
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+      background: var(--navy-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-weight: 900;
+    }
+    .problem-card-body { flex: 1; }
+    .problem-card-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 2px;
+      letter-spacing: -0.01em;
+    }
+    .problem-card-sub {
+      font-size: 8px;
+      font-weight: 700;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 3px;
+    }
+    .problem-card-desc {
+      font-size: 9.5px;
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       SECTION 4 · User Personas (no names, highlight roles)
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .personas {
+      background: var(--navy-dark);
+      padding: 18px 32px 20px;
+      flex-shrink: 0;
+    }
+    .personas .section-label { color: var(--gold); }
+    .personas .section-label::after { background: rgba(212,160,23,0.25); }
+    .personas-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .personas-title em { color: var(--gold-light); font-style: italic; }
+    .personas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+    }
+    .persona {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,160,23,0.18);
+      border-radius: 5px;
+      padding: 9px 10px;
+    }
+    .persona-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--navy-darkest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 5px;
+      font-family: 'Playfair Display', serif;
+    }
+    .persona-role {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--gold-light);
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .persona-want {
+      font-size: 9px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.4;
+      font-style: italic;
+      margin-bottom: 4px;
+    }
+    .persona-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .persona-list li {
+      font-size: 8.5px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.35;
+      padding-left: 9px;
+      position: relative;
+      margin-bottom: 2px;
+    }
+    .persona-list li::before {
+      content: 'â€º';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       SECTION 5 · Why this matters (Cebu City · Labor Day 2026)
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .why {
+      background: var(--sand);
+      padding: 12px 32px 14px;
+      flex-shrink: 0;
+      border-top: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+    }
+    .why .section-label { color: var(--navy-mid); margin-bottom: 6px; }
+    .why .section-label::after { background: rgba(31,63,125,0.18); }
+    .why-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 7px;
+    }
+    .why-head-text { flex: 1; }
+    .why-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 2px;
+      line-height: 1.15;
+    }
+    .why-title em { color: var(--gold-dark); font-style: italic; }
+    .why-sub {
+      font-size: 8.5px;
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+    .why-cebu-logo {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--white);
+      padding: 2px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+      object-fit: contain;
+    }
+    /* Editorial / magazine-style stack — no two cards alike */
+    .why-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .why-card {
+      display: flex;
+      align-items: stretch;
+      background: var(--white);
+      border-radius: 5px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.10);
+      overflow: hidden;
+      position: relative;
+    }
+    /* Card 1 — image LEFT, slightly inset from right */
+    .why-card.c1 {
+      margin-right: 14px;
+      height: 92px;
+    }
+    .why-card.c1 .why-card-img {
+      width: 38%;
+    }
+    /* Card 2 — image RIGHT (square), offset left */
+    .why-card.c2 {
+      flex-direction: row-reverse;
+      margin-left: 22px;
+      width: calc(100% - 22px);
+      height: 110px;
+    }
+    .why-card.c2 .why-card-img {
+      width: 110px;          /* same as height -> square */
+      height: 110px;
+      object-fit: contain;   /* show the whole photo, no cropping */
+      background: var(--navy-darkest);
+    }
+    .why-card.c2 .why-card-body {
+      border-left: none;
+      border-right: 3px solid var(--gold);
+    }
+    .why-card-img {
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: var(--navy-dark);
+      flex-shrink: 0;
+    }
+    .why-card-body {
+      flex: 1;
+      padding: 5px 9px 6px;
+      border-left: 3px solid var(--gold);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .why-card-tag {
+      font-size: 6.5px;
+      font-weight: 700;
+      color: var(--gold-dark);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1px;
+    }
+    .why-card-title {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 2px;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+    .why-card-desc {
+      font-size: 7.5px;
+      color: var(--ink-soft);
+      line-height: 1.35;
+    }
+    /* Decorative gold corner tick on the wide middle card */
+    .why-card.c2::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 14px;
+      height: 14px;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+      pointer-events: none;
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       SECTION 6 · Process + Prototype (split row)
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .process-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+      flex-shrink: 0;
+    }
+    .wireframes {
+      background: var(--parchment);
+      padding: 16px 18px 18px;
+    }
+    .wireframes .section-label { color: var(--navy-mid); margin-bottom: 6px; }
+    .wireframes .section-label::after { background: rgba(31,63,125,0.15); }
+    .wireframes-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 3px;
+      line-height: 1.15;
+    }
+    .wireframes-sub {
+      font-size: 8.5px;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+    .wireframe-box {
+      width: 100%;
+      background: var(--white);
+      border: 1px solid rgba(31,63,125,0.25);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .wireframe-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .screenshots {
+      background: var(--white);
+      padding: 16px 18px 18px;
+    }
+    .screenshots .section-label { color: var(--gold-dark); margin-bottom: 6px; }
+    .screenshots-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 3px;
+      line-height: 1.15;
+    }
+    .screenshots-sub {
+      font-size: 8.5px;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 6px;
+    }
+    .screenshot-box {
+      display: flex;
+      flex-direction: column;
+    }
+    .screenshot-box .label {
+      color: var(--navy-dark);
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-align: left;
+      margin-bottom: 3px;
+    }
+    .screenshot-box .frame {
+      background: var(--white);
+      border: 1px solid rgba(31,63,125,0.20);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .screenshot-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       SECTION 7 · Footer
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .footer {
+      background: var(--navy-darkest);
+      padding: 16px 32px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-height: 90px;
+    }
+    .footer-left { flex: 1; }
+    .footer-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.04em;
+      margin-bottom: 5px;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+    .footer-group {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.04em;
+    }
+    .footer-course {
+      font-size: 8.5px;
+      color: rgba(255,255,255,0.40);
+      margin-top: 3px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .qr-wrap {
+      flex-shrink: 0;
+      text-align: center;
+    }
+    .qr-box {
+      width: 60px;
+      height: 60px;
+      background: var(--white);
+      border-radius: 5px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: repeat(7, 1fr);
+      gap: 2px;
+      padding: 5px;
+    }
+    .qr-cell { border-radius: 1px; background: var(--navy-darkest); }
+    .qr-cell.w { background: transparent; }
+    .qr-label {
+      font-size: 7.5px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 4px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-note">
+    <strong>Print Instructions:</strong> Designed at <strong>2 ft Ã— 6 ft</strong> (portrait).
+    Print dialog → paper size <code>24in Ã— 72in</code> → no margins → enable background graphics → Save as PDF.
+    Send to tarpaulin shop at <strong>150 DPI</strong> minimum.
+    <br><br>
+    <strong>Placeholders to fill:</strong> Wireframe box · 4 screenshot boxes. Replace each with your assets before printing.
+  </div>
+
+  <div class="standee">
+
+    <!-- â”€â”€ 1 · Top stripe â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <div class="stripe-top">
+      CIS 2205 &nbsp;·&nbsp; Design Project Booth Exhibit &nbsp;·&nbsp; University of San Carlos
+    </div>
+
+    <!-- â”€â”€ 2 · Hero with SDG 8 logo â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <div class="hero">
+      <div class="hero-row">
+        <div class="hero-text">
+          <div class="hero-eyebrow">AI-Assisted Job Matcher · Cebu</div>
+          <h1 class="hero-title">
+            Scratch
+            <span class="hero-title-accent">Match.</span>
+          </h1>
+          <p class="hero-subtitle">Right people. Right jobs. Found.</p>
+          <p class="hero-tagline">
+            A locally-bound matcher for Cebu — built so the right CV
+            and the right opening can finally find each other.
+          </p>
+        </div>
+        <img class="sdg8-img" src="assets/SDG_8_Logo.png" alt="UN SDG 8 — Decent Work and Economic Growth">
+      </div>
+    </div>
+
+    <!-- â”€â”€ 3 · The Problem (compact) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <div class="problem">
+      <div class="section-label">The Problem</div>
+      <h2 class="problem-headline">
+        Cebu's job market is broken in <span>three</span> ways.
+      </h2>
+
+      <div class="problem-cards">
+
+        <div class="problem-card">
+          <div class="problem-icon">↓</div>
+          <div class="problem-card-body">
+            <div class="problem-card-sub">Issue 01</div>
+            <div class="problem-card-title">Unemployment</div>
+            <div class="problem-card-desc">
+              Qualified seekers blast generic CVs into the void. Listings exist. Applicants exist. The bridge between them does not.
+            </div>
+          </div>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-icon">â‰ </div>
+          <div class="problem-card-body">
+            <div class="problem-card-sub">Issue 02</div>
+            <div class="problem-card-title">Overqualification</div>
+            <div class="problem-card-desc">
+              Talent ends up in roles far below their skill ceiling. Wages stagnate. Growth stalls. Skills decay from disuse.
+            </div>
+          </div>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-icon">∅</div>
+          <div class="problem-card-body">
+            <div class="problem-card-sub">Issue 03</div>
+            <div class="problem-card-title">Underutilized AI</div>
+            <div class="problem-card-desc">
+              AI is everywhere — except where it could matter most. Local hiring still runs on keyword luck instead of meaning.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- â”€â”€ 4 · Personas (roles, not names) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <div class="personas">
+      <div class="section-label">Who It Serves</div>
+      <h2 class="personas-title">Four <em>roles</em>. One platform.</h2>
+
+      <div class="personas-grid">
+
+        <div class="persona">
+          <div class="persona-icon">◇</div>
+          <div class="persona-role">Job Seeker</div>
+          <div class="persona-want">As a Job Seeker, I want to:</div>
+          <ul class="persona-list">
+            <li>Upload my CV once and get matched.</li>
+            <li>See openings that actually fit my skills.</li>
+            <li>Ask an AI advisor to tailor my rÃ©sumÃ©.</li>
+          </ul>
+        </div>
+
+        <div class="persona">
+          <div class="persona-icon">◆</div>
+          <div class="persona-role">Employer</div>
+          <div class="persona-want">As an Employer, I want to:</div>
+          <ul class="persona-list">
+            <li>Post a role and get a ranked shortlist.</li>
+            <li>Filter by real fit, not keyword sprays.</li>
+            <li>Reach Cebu-based talent first.</li>
+          </ul>
+        </div>
+
+        <div class="persona">
+          <div class="persona-icon">▲</div>
+          <div class="persona-role">Government</div>
+          <div class="persona-want">As Government (PEO Cebu), I want to:</div>
+          <ul class="persona-list">
+            <li>Host the service for residents on-prem.</li>
+            <li>Own the data and protect privacy.</li>
+            <li>Report on real labor outcomes.</li>
+          </ul>
+        </div>
+
+        <div class="persona">
+          <div class="persona-icon">⌬</div>
+          <div class="persona-role">Developers</div>
+          <div class="persona-want">As Developers, I want to:</div>
+          <ul class="persona-list">
+            <li>Maintain and tune the matcher engine.</li>
+            <li>Keep the system offline and auditable.</li>
+            <li>Ship updates without cloud dependencies.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- â”€â”€ 5 · Why this matters · Cebu City · Labor Day 2026 â”€â”€ -->
+    <div class="why">
+      <div class="section-label">Why This Matters · Post Labor Day 2026</div>
+
+      <div class="why-head">
+        <img class="why-cebu-logo" src="assets/cebu_city_logo.png" alt="Cebu City Government">
+        <div class="why-head-text">
+          <h2 class="why-title">Cebu City is already <em>moving</em>.</h2>
+          <p class="why-sub">
+            Labor Day just passed — and over the past year the city has rolled out concrete moves to fight unemployment, from city-wide job fairs to livelihood programs for senior citizens. Scratch Match plugs directly into that momentum.
+          </p>
+        </div>
+      </div>
+
+      <div class="why-stack">
+
+        <div class="why-card c1">
+          <img class="why-card-img" src="assets/labor_day_2026.jpg" alt="Cebu City Labor Day 2026">
+          <div class="why-card-body">
+            <div class="why-card-tag">May 1, 2026</div>
+            <div class="why-card-title">Labor Day Citywide Drive</div>
+            <div class="why-card-desc">
+              Cebu City marked Labor Day 2026 with a public renewal of its commitment to decent work for every resident — a citywide signal that hiring needs to work for everyone.
+            </div>
+          </div>
+        </div>
+
+        <div class="why-card c2">
+          <img class="why-card-img" src="assets/senior_citizens_employment_2026.jpg" alt="Senior Citizens Employment Program 2026">
+          <div class="why-card-body">
+            <div class="why-card-tag">2026 Initiative</div>
+            <div class="why-card-title">Seniors Back to Work</div>
+            <div class="why-card-desc">
+              A new livelihood track opens roles to elderly Cebuanos — a population traditional job boards ignore. Scratch Match makes that demographic a first-class citizen of the matcher.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- â”€â”€ 6 · Process (wireframes) + Prototype (split) â”€â”€ -->
+    <div class="process-row">
+
+      <div class="wireframes">
+        <div class="section-label">Process</div>
+        <h3 class="wireframes-title">Sticky note → system.</h3>
+        <p class="wireframes-sub">
+          Notebook sketches and flow diagrams that shaped the build.
+        </p>
+        <div class="wireframe-box">
+          <img src="assets/prototype.jpg" alt="Notebook prototype sketch">
+        </div>
+      </div>
+
+      <div class="screenshots">
+        <div class="section-label">Prototype</div>
+        <h3 class="screenshots-title">Live build today.</h3>
+        <p class="screenshots-sub">
+          Screens from the working prototype.
+        </p>
+        <div class="screenshot-grid">
+          <div class="screenshot-box">
+            <div class="label">Home</div>
+            <div class="frame"><img src="assets/home.png" alt="Home screen"></div>
+          </div>
+          <div class="screenshot-box">
+            <div class="label">Seeker</div>
+            <div class="frame"><img src="assets/seekers.png" alt="Seeker dashboard"></div>
+          </div>
+          <div class="screenshot-box">
+            <div class="label">Employer</div>
+            <div class="frame"><img src="assets/employers.png" alt="Employer view"></div>
+          </div>
+          <div class="screenshot-box">
+            <div class="label">Admin</div>
+            <div class="frame"><img src="assets/admin.png" alt="Admin / matches"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- â”€â”€ 7 · Footer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <div class="footer">
+      <div class="footer-left">
+        <div class="footer-tag">Local. Private. Built for Cebu.</div>
+        <div class="footer-group">Group Sigma &nbsp;·&nbsp; CIS 2205</div>
+        <div class="footer-course">University of San Carlos &nbsp;·&nbsp; 2026</div>
+      </div>
+      <div class="qr-wrap">
+        <div class="qr-box" id="qr"></div>
+        <div class="qr-label">Scan for Demo</div>
+      </div>
+    </div>
+
+  </div><!-- .standee -->
+
+  <script>
+    const qr = document.getElementById('qr');
+    const pattern = [
+      [1,1,1,1,1,1,1],
+      [1,0,0,0,0,0,1],
+      [1,0,1,1,1,0,1],
+      [1,0,1,0,1,0,1],
+      [1,0,1,1,1,0,1],
+      [1,0,0,0,0,0,1],
+      [1,1,1,1,1,1,1],
+    ];
+    pattern[3][3] = 1;
+    const extras = [[0,3],[0,4],[0,5],[1,3],[2,5],[3,6],[4,3],[5,5],[6,3],[6,4]];
+    extras.forEach(([r,c]) => pattern[r] && (pattern[r][c] = 1));
+    pattern.forEach(row => {
+      row.forEach(val => {
+        const cell = document.createElement('div');
+        cell.className = val ? 'qr-cell' : 'qr-cell w';
+        qr.appendChild(cell);
+      });
+    });
+  </script>
+</body>
+</html>

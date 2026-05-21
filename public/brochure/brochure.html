@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <title>Scratch Match — Tri-fold Brochure (A4 landscape, Z-fold)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-darkest: #0a162e;
+      --navy-dark:    #0e1f3f;
+      --navy-mid:     #1f3f7d;
+      --navy-light:   #2d56a4;
+      --gold:         #d4a017;
+      --gold-light:   #e7c45a;
+      --gold-dark:    #a8800f;
+      --parchment:    #f7f5ee;
+      --sand:         #efe9d8;
+      --white:        #ffffff;
+      --ink:          #0a0e1a;
+      --ink-soft:     #1f2937;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      color-adjust: exact;
+    }
+
+    @media screen {
+      body {
+        background: #c8c8c8;
+        font-family: 'Inter', system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 16px 48px;
+        gap: 24px;
+      }
+      .print-note {
+        max-width: 1100px;
+        padding: 14px 20px;
+        background: #1a1a1a;
+        color: #e8e8e8;
+        border-radius: 6px;
+        font-size: 12.5px;
+        line-height: 1.6;
+      }
+      .print-note strong { color: #e7c45a; }
+      .sheet { box-shadow: 0 14px 40px rgba(0,0,0,0.40); }
+      .sheet-label {
+        align-self: flex-start;
+        margin-left: 8px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #444;
+        margin-bottom: -16px;
+      }
+    }
+
+    @media print {
+      @page { size: 11.69in 8.27in; margin: 0; }
+      body { background: none; padding: 0; margin: 0; }
+      .print-note, .sheet-label { display: none !important; }
+      .sheet {
+        width: 11.69in !important;
+        height: 8.27in !important;
+        box-shadow: none !important;
+        page-break-after: always;
+      }
+      .sheet:last-of-type { page-break-after: auto; }
+    }
+
+    /* â”€â”€ Sheet (one side of the paper) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .sheet {
+      width: 11.69in;
+      height: 8.27in;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+    .panel {
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px dashed rgba(0,0,0,0.08);
+    }
+    .panel:last-child { border-right: none; }
+
+    @media print {
+      .panel { border-right: none; }
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       FRONT COVER (Side 1 · Panel 3 — rightmost)
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .cover {
+      background: var(--navy-darkest);
+      color: var(--white);
+      padding: 30px 26px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 520px; height: 460px;
+      background: radial-gradient(ellipse at center, rgba(212,160,23,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cover-eyebrow {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 76px;
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+    .cover-title .accent { color: var(--gold-light); display: block; }
+    .cover-rule {
+      width: 50px;
+      height: 3px;
+      background: var(--gold);
+      margin: 18px 0 14px;
+      position: relative;
+    }
+    .cover-sub {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-style: italic;
+      color: var(--gold-light);
+      line-height: 1.3;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .cover-tagline {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.55;
+      margin-bottom: 22px;
+      position: relative;
+    }
+    .cover-sdg {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+    .cover-sdg img {
+      width: 76px;
+      height: 76px;
+      border-radius: 4px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+      object-fit: cover;
+    }
+    .cover-sdg-text {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.4;
+    }
+    .cover-sdg-text strong { color: var(--gold-light); display: block; font-size: 10px; margin-bottom: 2px; }
+    .cover-stripe {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 8px;
+      background: var(--gold);
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       INSIDE FLAP (Side 1 · Panel 2 — middle, first reveal)
+       The "What is Scratch Match?" panel
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .flap {
+      background: var(--parchment);
+      padding: 26px 24px;
+    }
+    .flap-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .flap-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(168,128,15,0.3);
+    }
+    .flap-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      line-height: 1.05;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .flap-title em { color: var(--gold-dark); font-style: italic; }
+    .flap-lead {
+      font-size: 11px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .flap-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      padding: 10px 13px;
+      border-left: 3px solid var(--gold);
+      border-radius: 0 5px 5px 0;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--navy-dark);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 64px;
+      letter-spacing: -0.02em;
+    }
+    .stat-num span { color: var(--gold-dark); font-size: 16px; }
+    .stat-body { flex: 1; }
+    .stat-label {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 2px;
+    }
+    .stat-desc {
+      font-size: 9.5px;
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+    .flap-pull {
+      margin-top: auto;
+      padding: 12px 14px;
+      background: var(--navy-dark);
+      color: var(--white);
+      border-radius: 5px;
+      position: relative;
+    }
+    .flap-pull::before {
+      content: '"';
+      position: absolute;
+      top: 4px;
+      left: 8px;
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      color: var(--gold);
+      line-height: 1;
+      opacity: 0.5;
+    }
+    .flap-pull-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      font-style: italic;
+      line-height: 1.45;
+      padding-left: 22px;
+      color: var(--gold-light);
+    }
+    .flap-pull-attr {
+      font-size: 8.5px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding-left: 22px;
+      margin-top: 6px;
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       BACK COVER (Side 1 · Panel 1 — leftmost when unfolded)
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .back {
+      background: var(--navy-dark);
+      color: var(--white);
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+    }
+    .back-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .back-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .back-headline em { color: var(--gold-light); font-style: italic; }
+    .back-sub {
+      font-size: 10px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .contact-block {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,160,23,0.18);
+      border-radius: 5px;
+      padding: 12px 13px;
+      margin-bottom: 14px;
+    }
+    .contact-row {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      margin-bottom: 7px;
+      font-size: 9.5px;
+      line-height: 1.4;
+    }
+    .contact-row:last-child { margin-bottom: 0; }
+    .contact-row .key {
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 8px;
+      width: 56px;
+      flex-shrink: 0;
+      padding-top: 1px;
+    }
+    .contact-row .val {
+      color: rgba(255,255,255,0.85);
+      flex: 1;
+      word-break: break-word;
+    }
+
+    .qr-section {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-top: 1px solid rgba(212,160,23,0.18);
+      border-bottom: 1px solid rgba(212,160,23,0.18);
+      margin-bottom: 16px;
+    }
+    .qr-img {
+      width: 84px;
+      height: 84px;
+      background: var(--white);
+      border-radius: 5px;
+      padding: 4px;
+      flex-shrink: 0;
+      display: block;
+      object-fit: contain;
+    }
+    .qr-text {
+      flex: 1;
+    }
+    .qr-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+    }
+    .qr-text span {
+      font-size: 9px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.45;
+    }
+
+    .footer-id {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 2px solid var(--gold);
+    }
+    .footer-tag {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      font-style: italic;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+    }
+    .footer-group {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+    .footer-course {
+      font-size: 8.5px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 3px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       INSIDE SPREAD (Side 2 · Panels 1·2·3)
+       Reads as one continuous magazine spread.
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .inside-1 {
+      background: var(--white);
+      padding: 26px 24px 22px;
+    }
+    .inside-2 {
+      background: var(--parchment);
+      padding: 26px 24px 22px;
+    }
+    .inside-3 {
+      background: var(--white);
+      padding: 26px 24px 22px;
+    }
+
+    .ip-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ip-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(168,128,15,0.25);
+    }
+    .ip-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      line-height: 1.05;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .ip-title em { color: var(--gold-dark); font-style: italic; }
+    .ip-sub {
+      font-size: 10px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    /* — How It Works (steps) — */
+    .step {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      margin-bottom: 11px;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      background: var(--navy-dark);
+      color: var(--gold-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .step-body { flex: 1; padding-top: 1px; }
+    .step-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 2px;
+      letter-spacing: -0.01em;
+    }
+    .step-desc {
+      font-size: 9.5px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    /* — Tech stack — */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+    .tech-card {
+      background: var(--white);
+      border: 1px solid rgba(31,63,125,0.18);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      padding: 8px 10px;
+    }
+    .tech-name {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      letter-spacing: -0.01em;
+      margin-bottom: 1px;
+    }
+    .tech-role {
+      font-size: 7.5px;
+      font-weight: 700;
+      color: var(--gold-dark);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .tech-desc {
+      font-size: 8.5px;
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+
+    .privacy {
+      background: var(--navy-dark);
+      color: var(--white);
+      border-radius: 5px;
+      padding: 11px 13px;
+      margin-top: auto;
+    }
+    .privacy-title {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .privacy-text {
+      font-size: 9px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.5;
+    }
+    .privacy-text strong { color: var(--gold-light); font-weight: 700; }
+
+    /* — Personas (compact) — */
+    .persona {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      padding: 7px 0;
+      border-bottom: 1px dotted rgba(31,63,125,0.18);
+    }
+    .persona:last-of-type { border-bottom: none; }
+    .persona-mark {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      background: var(--gold);
+      color: var(--navy-darkest);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      font-weight: 800;
+      margin-top: 1px;
+    }
+    .persona-body { flex: 1; }
+    .persona-role {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      letter-spacing: -0.01em;
+      margin-bottom: 1px;
+    }
+    .persona-line {
+      font-size: 8.5px;
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+    .persona-line em { color: var(--gold-dark); font-style: italic; font-weight: 600; }
+
+    /* — Why this matters (Cebu) compact — */
+    .why-strip {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--gold);
+    }
+    .why-strip img {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--white);
+      padding: 2px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+      object-fit: contain;
+    }
+    .why-strip-text {
+      font-size: 9px;
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+    .why-strip-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 2px;
+      font-style: italic;
+    }
+
+    .why-tile {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 9px;
+      background: var(--white);
+      border: 1px solid rgba(31,63,125,0.15);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .why-tile img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--navy-darkest);
+    }
+    .why-tile.contain img { object-fit: contain; }
+    .why-tile-body {
+      padding: 7px 10px 7px 0;
+      flex: 1;
+    }
+    .why-tile-tag {
+      font-size: 7px;
+      font-weight: 700;
+      color: var(--gold-dark);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1px;
+    }
+    .why-tile-title {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 2px;
+      line-height: 1.15;
+    }
+    .why-tile-desc {
+      font-size: 8.5px;
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+
+    /* — Labor Day image strip — */
+    .labor-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .labor-cell {
+      display: flex;
+      flex-direction: column;
+    }
+    .labor-cell img {
+      width: 100%;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid rgba(31,63,125,0.18);
+      display: block;
+    }
+    .labor-cell .cap {
+      font-size: 7px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      font-weight: 700;
+      margin-top: 4px;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* — FAQ — */
+    .faq {
+      margin-top: 6px;
+    }
+    .faq-item {
+      padding: 7px 0;
+      border-bottom: 1px dotted rgba(31,63,125,0.2);
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 2px;
+      letter-spacing: -0.01em;
+    }
+    .faq-q::before {
+      content: 'Q.';
+      color: var(--gold-dark);
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      margin-right: 5px;
+    }
+    .faq-a {
+      font-size: 8.5px;
+      color: var(--ink-soft);
+      line-height: 1.45;
+      padding-left: 15px;
+    }
+
+    /* — Roadmap — */
+    .roadmap {
+      margin-bottom: 14px;
+    }
+    .roadmap-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 6px 0;
+    }
+    .roadmap-when {
+      font-family: 'Playfair Display', serif;
+      font-size: 10.5px;
+      font-weight: 900;
+      color: var(--gold-dark);
+      width: 60px;
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+      padding-top: 1px;
+    }
+    .roadmap-what {
+      flex: 1;
+      font-size: 9.5px;
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+    .roadmap-what strong {
+      color: var(--navy-dark);
+      font-weight: 800;
+      display: block;
+      font-size: 10.5px;
+      margin-bottom: 1px;
+    }
+
+    /* — Inside cover stripe — */
+    .inside-stripe {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gold);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-note">
+    <strong>Print Instructions:</strong> A4 landscape (11.69in Ã— 8.27in), <strong>double-sided, flip on long edge</strong>.
+    <strong>Z-fold</strong> (accordion): three equal panels per side, fold zig-zag.
+    Side 1 panel order (left → right): <strong>Back · Inside-Flap · Front Cover</strong>.
+    Side 2 (when fully unfolded): three connected inside panels.
+    Print at 300 DPI, no margins, enable background graphics.
+  </div>
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       SIDE 1 — outer faces
+       Panel 1 (left)   = Back cover
+       Panel 2 (middle) = Inside flap (first reveal)
+       Panel 3 (right)  = Front cover
+  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <div class="sheet-label">Side 1 — Outer (Back · Flap · Cover)</div>
+  <div class="sheet">
+
+    <!-- Panel 1 · Back cover -->
+    <div class="panel back">
+      <div class="back-label">Get In Touch</div>
+      <h2 class="back-headline">Tried the <em>prototype</em>? Tell us what you think.</h2>
+      <p class="back-sub">
+        Scratch Match is a student-built, on-prem matcher actively looking for design feedback, employer pilots, and Cebu-based partners.
+      </p>
+
+      <div class="contact-block">
+        <div class="contact-row">
+          <div class="key">Team</div>
+          <div class="val">Group Sigma · CIS 2205</div>
+        </div>
+        <div class="contact-row">
+          <div class="key">School</div>
+          <div class="val">University of San Carlos, Cebu</div>
+        </div>
+        <div class="contact-row">
+          <div class="key">Email</div>
+          <div class="val">21103565@usc.edu.ph</div>
+        </div>
+        <div class="contact-row">
+          <div class="key">GitHub</div>
+          <div class="val">github.com/apotato369550</div>
+        </div>
+      </div>
+
+      <div class="qr-section">
+        <img class="qr-img" src="assets/QR_code.png" alt="Prototype feedback form QR code">
+        <div class="qr-text">
+          <strong>Scan to Send Feedback</strong>
+          <span>Opens the prototype feedback form. Two minutes, anonymous, helps us iterate.</span>
+        </div>
+      </div>
+
+      <div class="footer-id">
+        <div class="footer-tag">Local. Private. Built for Cebu.</div>
+        <div class="footer-group">Group Sigma &nbsp;·&nbsp; CIS 2205</div>
+        <div class="footer-course">University of San Carlos &nbsp;·&nbsp; 2026</div>
+      </div>
+    </div>
+
+    <!-- Panel 2 · Inside flap (first reveal when opening cover) -->
+    <div class="panel flap">
+      <div class="flap-label">What is Scratch Match?</div>
+      <h2 class="flap-title">A matcher that <em>actually</em> reads your CV.</h2>
+      <p class="flap-lead">
+        Most job boards pretend to match you with keyword searches. Scratch Match reads the meaning of a CV and a job post the way a human recruiter would, then ranks fit end to end on hardware the city itself can own.
+      </p>
+
+      <div class="flap-stats">
+        <div class="stat">
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-body">
+            <div class="stat-label">On-Premise</div>
+            <div class="stat-desc">Runs on local servers. No cloud vendor sees your data, ever.</div>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4</div>
+          <div class="stat-body">
+            <div class="stat-label">User Roles</div>
+            <div class="stat-desc">Seeker, Employer, Government, Developer. One platform.</div>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">768<span>d</span></div>
+          <div class="stat-body">
+            <div class="stat-label">Embedding Dimensions</div>
+            <div class="stat-desc">Vector fingerprints in Qdrant capture semantic meaning, not keywords.</div>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">8<span>B</span></div>
+          <div class="stat-body">
+            <div class="stat-label">Local LLM Parameters</div>
+            <div class="stat-desc">Llama-class model served via Ollama. No API keys, no token bills.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flap-pull">
+        <div class="flap-pull-text">
+          The right CV and the right opening should be able to find each other, without a foreign cloud in the middle.
+        </div>
+        <div class="flap-pull-attr">Project Thesis</div>
+      </div>
+    </div>
+
+    <!-- Panel 3 · Front cover -->
+    <div class="panel cover">
+      <div class="cover-eyebrow">AI Job Matcher · Cebu City</div>
+      <h1 class="cover-title">
+        Scratch
+        <span class="accent">Match.</span>
+      </h1>
+      <div class="cover-rule"></div>
+      <p class="cover-sub">Right people.<br>Right jobs. Found.</p>
+      <p class="cover-tagline">
+        A locally bound, AI-assisted job matcher built for Cebu, so the right CV and the right opening can finally find each other.
+      </p>
+      <div class="cover-sdg">
+        <img src="assets/SDG_8_Logo.png" alt="UN SDG 8 — Decent Work and Economic Growth">
+        <div class="cover-sdg-text">
+          <strong>UN SDG 8</strong>
+          Decent Work &amp;<br>Economic Growth
+        </div>
+      </div>
+      <div class="cover-stripe"></div>
+    </div>
+
+  </div>
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       SIDE 2 — inside spread (reads left → right when fully unfolded)
+       Panel 1 = The Problem + Personas
+       Panel 2 = How It Works (5 steps)
+       Panel 3 = Tech Stack + Privacy + Why This Matters + FAQ + Roadmap
+  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <div class="sheet-label">Side 2 — Inner Spread (reads left to right)</div>
+  <div class="sheet">
+
+    <!-- Panel 1 · The Problem + Personas -->
+    <div class="panel inside-1">
+      <div class="inside-stripe"></div>
+      <div class="ip-label">The Problem</div>
+      <h2 class="ip-title">Cebu's job market is broken in <em>three</em> ways.</h2>
+      <p class="ip-sub">
+        Listings exist. Applicants exist. The bridge between them does not, and AI, which could obviously help, has barely been pointed at the problem.
+      </p>
+
+      <div class="step">
+        <div class="step-num">↓</div>
+        <div class="step-body">
+          <div class="step-title">Unemployment</div>
+          <div class="step-desc">Qualified Cebuano seekers blast generic CVs into the void. Openings sit unfilled for weeks. Both sides give up before the right match ever surfaces, and the city loses productive months it can never get back.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">â‰ </div>
+        <div class="step-body">
+          <div class="step-title">Overqualification</div>
+          <div class="step-desc">Talent ends up parked in roles far below its ceiling because that was the first opening that called back. Wages stagnate, skills decay from disuse, and ambitious workers eventually leave Cebu entirely to find work that matches what they can actually do.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">∅</div>
+        <div class="step-body">
+          <div class="step-title">Underutilized AI</div>
+          <div class="step-desc">AI is everywhere except where it could matter most. Local hiring still runs on keyword luck and gut feel, while semantic matching, the one job AI is genuinely good at, sits unused. Meaning never enters the loop.</div>
+        </div>
+      </div>
+
+      <div style="height: 14px;"></div>
+
+      <div class="ip-label" style="color: var(--navy-mid);">Who It Serves</div>
+      <h3 class="ip-title" style="font-size: 18px; margin-bottom: 8px;">Four <em>personas</em>. One platform.</h3>
+
+      <div class="persona">
+        <div class="persona-mark">◇</div>
+        <div class="persona-body">
+          <div class="persona-role">Job Seeker</div>
+          <div class="persona-line"><em>As a Job Seeker, I want to</em> upload my CV once, see openings that actually fit my skills, and ask an AI advisor to tailor my rÃ©sumÃ© to a specific posting.</div>
+        </div>
+      </div>
+      <div class="persona">
+        <div class="persona-mark">◆</div>
+        <div class="persona-body">
+          <div class="persona-role">Employer</div>
+          <div class="persona-line"><em>As an Employer, I want to</em> post a role and get a ranked shortlist filtered by real fit instead of keyword sprays, so I can reach Cebu-based talent first.</div>
+        </div>
+      </div>
+      <div class="persona">
+        <div class="persona-mark">▲</div>
+        <div class="persona-body">
+          <div class="persona-role">Government (PEO Cebu)</div>
+          <div class="persona-line"><em>As Government, I want to</em> host the service for residents on-prem, own the data, protect privacy, and report on real labor outcomes.</div>
+        </div>
+      </div>
+      <div class="persona">
+        <div class="persona-mark">⌬</div>
+        <div class="persona-body">
+          <div class="persona-role">Developers</div>
+          <div class="persona-line"><em>As a Developer, I want to</em> maintain and tune the matcher engine, keep the system offline and auditable, and ship updates without any cloud dependencies.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 2 · How It Works -->
+    <div class="panel inside-2">
+      <div class="inside-stripe"></div>
+      <div class="ip-label">How It Works</div>
+      <h2 class="ip-title">From CV to <em>shortlist</em>, in five steps.</h2>
+      <p class="ip-sub">
+        No keyword games. Each CV and each posting is read for meaning, embedded into a vector space, and matched on semantic distance, locally, on Cebu hardware.
+      </p>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Upload &amp; Parse</div>
+          <div class="step-desc">Seekers drop in a PDF or DOCX CV. Employers post a job. A local LLM (Ollama) extracts skills, experience, and intent.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Embed</div>
+          <div class="step-desc">Both CV and posting are converted into vector embeddings, a numerical fingerprint of meaning.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Match (Qdrant)</div>
+          <div class="step-desc">A vector database finds the nearest semantic neighbors, the candidates whose meaning, not wording, fits the role.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Rank &amp; Explain</div>
+          <div class="step-desc">An AI advisor scores each match and explains in plain language why it is a fit, useful for both sides.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Apply &amp; Iterate</div>
+          <div class="step-desc">Seekers can ask the advisor to tailor the CV for a specific opening; employers shortlist with a click.</div>
+        </div>
+      </div>
+
+      <div style="height: 10px;"></div>
+
+      <div class="why-strip">
+        <img src="assets/cebu_city_logo.png" alt="Cebu City Government">
+        <div class="why-strip-text">
+          <strong>Why This Matters</strong>
+          Labor Day 2026 just passed. Cebu City has rolled out fresh job-fair drives and senior-citizen livelihood tracks. Scratch Match plugs straight into that momentum.
+        </div>
+      </div>
+
+      <div class="labor-strip">
+        <div class="labor-cell">
+          <img src="assets/labor_day_2026.jpg" alt="Cebu City Labor Day 2026">
+          <div class="cap">Labor Day 2026</div>
+        </div>
+        <div class="labor-cell">
+          <img src="assets/labor_day_job_fair.jpg" alt="Citywide Job Fair">
+          <div class="cap">Citywide Job Fair</div>
+        </div>
+        <div class="labor-cell">
+          <img src="assets/senior_citizens_employment_2026.jpg" alt="Senior Citizens Employment Program">
+          <div class="cap">Seniors Back to Work</div>
+        </div>
+        <div class="labor-cell">
+          <img src="assets/employment_requirements.jpg" alt="Employment Requirements Drive">
+          <div class="cap">Employment Drive</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 3 · Tech Stack + Privacy + FAQ -->
+    <div class="panel inside-3">
+      <div class="inside-stripe"></div>
+      <div class="ip-label">Under the Hood</div>
+      <h2 class="ip-title">A working <em>prototype</em>, not a final product.</h2>
+      <p class="ip-sub">
+        What you see today is a student-built proof of concept. The flows are real, the matching works, but features are still landing weekly. Every component is open-source and self-hostable. Nothing leaves the building unless you ask it to.
+      </p>
+
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-role">Frontend</div>
+          <div class="tech-name">Next.js</div>
+          <div class="tech-desc">React-based UI for all four user personas.</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-role">Database</div>
+          <div class="tech-name">SQLite</div>
+          <div class="tech-desc">Embedded, file-based, zero ops.</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-role">Vector Store</div>
+          <div class="tech-name">Qdrant</div>
+          <div class="tech-desc">Self-hosted semantic search engine.</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-role">LLM Runtime</div>
+          <div class="tech-name">Ollama</div>
+          <div class="tech-desc">Local language models, no API keys.</div>
+        </div>
+      </div>
+
+      <div class="ip-label" style="color: var(--navy-mid); margin-top: 4px;">Common Questions</div>
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-q">Is this a finished product?</div>
+          <div class="faq-a">No. It is a prototype built for a CIS 2205 design project. Functional, but actively evolving.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Does my data leave Cebu?</div>
+          <div class="faq-a">No. All inference, storage, and matching runs on local servers. Nothing is sent to a third-party cloud.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is it free to try?</div>
+          <div class="faq-a">Yes. The prototype is open for anyone to test, no sign-up fee, no hidden cost.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What file types are supported?</div>
+          <div class="faq-a">PDF and DOCX for CVs. Job postings can be pasted as plain text or filled into a form.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do I need an internet connection?</div>
+          <div class="faq-a">Only to reach the local server. The matching itself runs fully offline once deployed.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do I send feedback?</div>
+          <div class="faq-a">Scan the QR on the back panel, or email the team directly. Every comment helps shape the next iteration.</div>
+        </div>
+      </div>
+
+      <div class="privacy">
+        <div class="privacy-title">Privacy by Design</div>
+        <div class="privacy-text">
+          <strong>You own your CV.</strong> Seekers can delete their profile and embeddings any time. Employers see only what is necessary to match. The whole system is auditable, on-prem, and offline-capable.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -82,16 +82,76 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* About the prototype */}
+      <section className="border-t border-navy-100 bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-20">
+          <div className="mb-10">
+            <h2 className="section-title">About this prototype</h2>
+            <p className="mt-2 lead">
+              Scratch Match is a student-built design project (Group Sigma · CIS 2205,
+              University of San Carlos). Take a longer look at the why and the how.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <a
+              href="/brochure/brochure.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card p-8 hover:border-gold-500 transition-colors flex flex-col"
+            >
+              <div className="font-mono text-sm text-gold-600">Tri-fold · A4</div>
+              <h3 className="font-serif text-2xl text-navy-900 mt-3">Brochure</h3>
+              <p className="mt-3 text-base text-ink-soft leading-relaxed flex-1">
+                The full pitch in three folds — problem, personas, how the matcher
+                actually works, tech stack, and FAQ. Print-ready, designed for the
+                presentation.
+              </p>
+              <span className="btn-secondary mt-6 self-start">Open brochure →</span>
+            </a>
+            <a
+              href="/tarpaulin/tarpaulin.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card p-8 hover:border-gold-500 transition-colors flex flex-col"
+            >
+              <div className="font-mono text-sm text-gold-600">Standee · 2ft × 6ft</div>
+              <h3 className="font-serif text-2xl text-navy-900 mt-3">Tarpaulin</h3>
+              <p className="mt-3 text-base text-ink-soft leading-relaxed flex-1">
+                One-glance summary of the project, the SDG-8 alignment, and the call
+                for feedback. The poster we are bringing to the showcase.
+              </p>
+              <span className="btn-secondary mt-6 self-start">Open tarpaulin →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Feedback CTA */}
       <section className="mx-auto max-w-7xl px-6 py-20">
-        <div className="card p-10 md:p-12 flex flex-wrap items-center justify-between gap-8">
-          <div>
-            <h3 className="font-serif text-3xl text-navy-900">Ready to begin?</h3>
-            <p className="mt-2 text-lg text-ink-soft">Choose your role and we will guide you through onboarding.</p>
+        <div className="card p-10 md:p-12 flex flex-wrap items-center justify-between gap-8 border-l-4 border-gold-500">
+          <div className="max-w-2xl">
+            <div className="font-mono text-xs uppercase tracking-widest text-gold-600">
+              Help shape v2
+            </div>
+            <h3 className="font-serif text-3xl text-navy-900 mt-2">
+              You tried it — now tell us what worked and what didn't.
+            </h3>
+            <p className="mt-3 text-lg text-ink-soft">
+              We are at 12 out of 30 responses with the final presentation in days.
+              Your two minutes directly shape the next iteration. Anonymous, no sign-up.
+            </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link href="/onboarding/seeker" className="btn-secondary">I am a Job Seeker</Link>
-            <Link href="/onboarding/employer" className="btn-primary">I am an Employer</Link>
+            <a
+              href="https://forms.gle/Ho1yqDs8PZTxikxq6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              Open feedback form →
+            </a>
+            <Link href="/onboarding/seeker" className="btn-secondary">Try as Seeker</Link>
+            <Link href="/onboarding/employer" className="btn-secondary">Try as Employer</Link>
           </div>
         </div>
       </section>
