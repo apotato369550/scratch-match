@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scratch Match — Group Sigma — CIS 2205 Final Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-darkest: #0a162e;
+    --navy-dark:    #0e1f3f;
+    --navy-mid:     #1f3f7d;
+    --navy-light:   #2d56a4;
+    --gold:         #d4a017;
+    --gold-light:   #e7c45a;
+    --gold-dark:    #a8800f;
+    --parchment:    #f7f5ee;
+    --sand:         #efe9d8;
+    --white:        #ffffff;
+    --ink:          #0a0e1a;
+    --ink-soft:     #1f2937;
+    --sdg8-red:     #a21942;
+  }
+  *, *::before, *::after {
+    box-sizing: border-box; margin: 0; padding: 0;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  html, body { background: #1a1d24; font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink); }
+
+  /* ============ screen view: deck navigator ============ */
+  @media screen {
+    body { min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; padding: 24px 16px 90px; gap: 16px; }
+    .nav-hint { color: #aab; font-size: 12px; letter-spacing: 0.08em;
+      text-transform: uppercase; }
+    .deck { position: relative; }
+    .slide { display: none; }
+    .slide.active { display: flex; }
+    .controls {
+      position: fixed; bottom: 18px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(10,22,46,0.92); color: var(--gold-light);
+      padding: 10px 18px; border-radius: 999px;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+      z-index: 50;
+    }
+    .controls button {
+      background: transparent; color: var(--gold-light);
+      border: 1px solid rgba(231,196,90,0.4);
+      width: 30px; height: 30px; border-radius: 50%;
+      cursor: pointer; font-size: 15px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .controls button:hover { background: rgba(231,196,90,0.15); }
+    .counter { min-width: 60px; text-align: center; font-variant-numeric: tabular-nums; }
+  }
+
+  /* ============ print view: one slide per page ============ */
+  @media print {
+    @page { size: 13.333in 7.5in; margin: 0; }
+    body { background: none; padding: 0; }
+    .controls, .nav-hint { display: none !important; }
+    .slide { display: flex !important; page-break-after: always; box-shadow: none !important; }
+    .slide:last-child { page-break-after: auto; }
+  }
+
+  /* ============ slide canvas (16:9) ============ */
+  .slide {
+    width: 1280px; height: 720px;
+    background: var(--white);
+    box-shadow: 0 18px 64px rgba(0,0,0,0.55);
+    overflow: hidden; position: relative;
+    flex-direction: column;
+  }
+
+  /* ============ shared bits ============ */
+  .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--gold-dark);
+  }
+  .eyebrow.on-dark { color: var(--gold); }
+  h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.05; }
+  .slide-num {
+    position: absolute; bottom: 22px; right: 32px;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px; color: rgba(0,0,0,0.35); letter-spacing: 0.06em;
+  }
+  .slide.dark .slide-num { color: rgba(255,255,255,0.4); }
+  .footer-mark {
+    position: absolute; bottom: 22px; left: 32px;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(0,0,0,0.45); font-weight: 600;
+  }
+  .slide.dark .footer-mark { color: rgba(231,196,90,0.7); }
+
+  .slide.dark { background: var(--navy-darkest); color: var(--white); }
+  .slide.cream { background: var(--parchment); color: var(--ink); }
+
+  /* glow */
+  .glow::before {
+    content: ''; position: absolute; top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 900px; height: 700px;
+    background: radial-gradient(ellipse at center, rgba(212,160,23,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ============ S1 — Cover ============ */
+  .s-cover { justify-content: center; align-items: center; text-align: center;
+    padding: 60px 80px; position: relative; }
+  .s-cover .eyebrow { margin-bottom: 24px; }
+  .s-cover h1 {
+    font-size: 142px; font-weight: 900; color: var(--white);
+    letter-spacing: -0.03em; line-height: 0.92;
+  }
+  .s-cover h1 .accent { color: var(--gold-light); display: block; font-style: italic; font-weight: 700; }
+  .s-cover .sub {
+    margin-top: 26px; font-family: 'Playfair Display', serif;
+    font-size: 22px; font-style: italic; color: rgba(231,196,90,0.85);
+    max-width: 720px;
+  }
+  .s-cover .meta {
+    position: absolute; bottom: 48px; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 60px; color: rgba(255,255,255,0.55); font-size: 12px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .s-cover .meta img { width: 64px; height: 64px; border-radius: 6px; }
+
+  /* ============ generic split layout ============ */
+  .split { display: grid; height: 100%; }
+  .split.h2 { grid-template-columns: 1fr 1fr; }
+  .split.h32 { grid-template-columns: 3fr 2fr; }
+  .split.h23 { grid-template-columns: 2fr 3fr; }
+  .pad { padding: 70px 80px; display: flex; flex-direction: column; justify-content: center; }
+  .pad h2 {
+    font-size: 58px; font-weight: 800; color: var(--navy-dark); margin-top: 14px;
+    letter-spacing: -0.01em;
+  }
+  .slide.dark .pad h2 { color: var(--white); }
+  .pad h2 em { color: var(--gold-dark); font-style: italic; }
+  .slide.dark .pad h2 em { color: var(--gold-light); }
+  .pad p { font-size: 18px; color: var(--ink-soft); line-height: 1.55;
+    margin-top: 18px; max-width: 520px; }
+  .slide.dark .pad p { color: rgba(255,255,255,0.78); }
+  .pad .lead { font-size: 22px; color: var(--ink); }
+
+  /* image side */
+  .img-side { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .img-frame { background: var(--navy-dark); overflow: hidden;
+    display: flex; align-items: center; justify-content: center; }
+  .img-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ============ S2 — Problem (3 cards) ============ */
+  .s-problem { padding: 70px 80px; position: relative; }
+  .s-problem h2 { font-size: 64px; font-weight: 800; color: var(--white);
+    letter-spacing: -0.02em; line-height: 1.0; margin-top: 12px; }
+  .s-problem h2 em { color: var(--gold-light); font-style: italic; }
+  .problem-grid { display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 22px; margin-top: 50px; }
+  .p-card { background: rgba(255,255,255,0.04); border-left: 4px solid var(--gold);
+    padding: 24px 22px; border-radius: 0 6px 6px 0; }
+  .p-card .p-num { font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .p-card .p-title { font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+  .p-card .p-desc { font-size: 15px; color: rgba(255,255,255,0.78);
+    line-height: 1.55; }
+
+  /* ============ S3 — What is it (big statement) ============ */
+  .s-bigstate { padding: 100px 100px; justify-content: center; }
+  .s-bigstate .eyebrow { margin-bottom: 30px; }
+  .s-bigstate .quote {
+    font-family: 'Playfair Display', serif; font-size: 70px; font-weight: 800;
+    color: var(--navy-dark); line-height: 1.05; letter-spacing: -0.02em;
+    max-width: 1000px;
+  }
+  .s-bigstate .quote em { color: var(--gold-dark); font-style: italic; }
+  .s-bigstate .quote-sub { margin-top: 30px; font-size: 19px; color: var(--ink-soft);
+    max-width: 720px; line-height: 1.55; }
+
+  /* ============ S4 — Mission pillars ============ */
+  .pillars { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px;
+    margin-top: 44px; }
+  .pillar { background: var(--white); border-top: 4px solid var(--gold);
+    padding: 28px 24px; box-shadow: 0 4px 18px rgba(0,0,0,0.06); }
+  .pillar .pi { font-family: 'Playfair Display', serif; font-size: 38px;
+    font-weight: 900; color: var(--navy-dark); }
+  .pillar .pt { font-size: 18px; font-weight: 800; color: var(--navy-dark);
+    margin-top: 8px; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .pillar .pd { font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+
+  /* ============ S5 — SDG 8 ============ */
+  .s-sdg { padding: 70px 80px; align-items: center; }
+  .s-sdg .sdg-logo { width: 360px; height: 360px; }
+  .s-sdg .sdg-right { padding-left: 60px; }
+  .s-sdg h2 { font-size: 56px; }
+  .sdg-bullets { margin-top: 24px; padding-left: 22px; }
+  .sdg-bullets li { font-size: 17px; color: rgba(255,255,255,0.85);
+    line-height: 1.55; margin-bottom: 12px; }
+  .sdg-bullets li::marker { color: var(--gold); }
+
+  /* ============ S6 / S7 — Cebu cards ============ */
+  .s-cebu .right-img { background: var(--navy-darkest);
+    display: flex; align-items: center; justify-content: center; }
+  .s-cebu .right-img img { width: 100%; height: 100%; object-fit: cover; }
+  .s-cebu .tag { display: inline-block; background: var(--gold);
+    color: var(--navy-darkest); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.18em; padding: 5px 12px; border-radius: 3px;
+    text-transform: uppercase; margin-bottom: 18px; }
+
+  /* ============ S8 — Personas (2x2) ============ */
+  .s-personas { padding: 70px 80px; }
+  .s-personas h2 { font-size: 52px; font-weight: 800; color: var(--white);
+    letter-spacing: -0.02em; margin-top: 10px; }
+  .s-personas h2 em { color: var(--gold-light); font-style: italic; }
+  .persona-grid { display: grid; grid-template-columns: 1fr 1fr;
+    gap: 18px; margin-top: 36px; }
+  .persona-card { background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,160,23,0.22);
+    border-radius: 6px; padding: 22px 24px; }
+  .persona-card .icon {
+    width: 38px; height: 38px; border-radius: 50%; background: var(--gold);
+    color: var(--navy-darkest); font-family: 'Playfair Display', serif;
+    font-size: 19px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+  }
+  .persona-card .role { font-size: 18px; font-weight: 800;
+    color: var(--gold-light); text-transform: uppercase;
+    letter-spacing: 0.08em; margin-bottom: 8px; }
+  .persona-card .want { font-style: italic; color: rgba(255,255,255,0.7);
+    font-size: 13px; margin-bottom: 10px; }
+  .persona-card ul { list-style: none; padding: 0; }
+  .persona-card li {
+    font-size: 14px; color: rgba(255,255,255,0.82);
+    padding-left: 16px; position: relative; margin-bottom: 4px;
+    line-height: 1.45;
+  }
+  .persona-card li::before {
+    content: '›'; position: absolute; left: 0; color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* ============ S9 — Pipeline ============ */
+  .s-pipeline { padding: 70px 80px; justify-content: center; }
+  .s-pipeline h2 { font-size: 58px; }
+  .pipe { display: flex; align-items: stretch; gap: 0;
+    margin-top: 60px; }
+  .pipe-step { flex: 1; background: var(--white);
+    border-top: 4px solid var(--gold); padding: 22px 18px;
+    text-align: center; box-shadow: 0 3px 14px rgba(0,0,0,0.08); }
+  .pipe-step + .pipe-step { margin-left: 8px; }
+  .pipe-step .pipe-n { font-family: 'Playfair Display', serif;
+    font-size: 30px; font-weight: 900; color: var(--gold-dark);
+    margin-bottom: 6px; }
+  .pipe-step .pipe-t { font-weight: 800; color: var(--navy-dark);
+    font-size: 16px; margin-bottom: 6px; }
+  .pipe-step .pipe-d { font-size: 12px; color: var(--ink-soft);
+    line-height: 1.45; }
+  .pipe-arrow { display: flex; align-items: center;
+    color: var(--gold-dark); font-size: 22px; margin: 0 -4px;
+    font-weight: 800; }
+
+  /* ============ S10 — Stack ============ */
+  .s-stack { padding: 70px 80px; }
+  .s-stack h2 { font-size: 56px; color: var(--white); margin-bottom: 10px; }
+  .stack-grid { display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 18px; margin-top: 40px; }
+  .stack-card { background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(212,160,23,0.22);
+    padding: 24px 22px; border-radius: 6px; }
+  .stack-card .layer { font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); font-weight: 700;
+    margin-bottom: 12px; }
+  .stack-card .name { font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 800; color: var(--white);
+    margin-bottom: 10px; }
+  .stack-card .role { font-size: 13px; color: rgba(255,255,255,0.7);
+    line-height: 1.5; }
+
+  .stack-tagline { margin-top: 40px; font-family: 'Playfair Display', serif;
+    font-size: 28px; font-style: italic; color: var(--gold-light);
+    text-align: center; }
+
+  /* ============ Feature slides (11 / 12) ============ */
+  .feat-list { margin-top: 30px; }
+  .feat-list .feat { display: flex; gap: 18px; margin-bottom: 22px; }
+  .feat-list .feat .n { font-family: 'Playfair Display', serif;
+    font-size: 38px; font-weight: 900; color: var(--gold-dark);
+    line-height: 1; min-width: 50px; }
+  .feat-list .feat .body .t { font-size: 20px; font-weight: 800;
+    color: var(--navy-dark); margin-bottom: 4px; }
+  .feat-list .feat .body .d { font-size: 15px; color: var(--ink-soft);
+    line-height: 1.55; max-width: 460px; }
+  .slide.dark .feat-list .feat .body .t { color: var(--white); }
+  .slide.dark .feat-list .feat .body .d { color: rgba(255,255,255,0.78); }
+
+  /* ============ Prototype slide ============ */
+  .shots-grid { display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; margin-top: 30px; }
+  .shot { background: var(--white); border: 1px solid rgba(31,63,125,0.2);
+    border-radius: 5px; overflow: hidden; }
+  .shot .lbl { background: var(--navy-dark); color: var(--gold-light);
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 6px 12px; font-weight: 700; }
+  .shot img { width: 100%; height: 170px; object-fit: cover; display: block; background: #eee; }
+
+  /* ============ Exhibit slide ============ */
+  .exhibit-grid { display: grid; grid-template-columns: 2fr 1fr;
+    gap: 18px; margin-top: 26px; height: 460px; }
+  .exhibit-grid .stack-imgs { display: grid; grid-template-rows: 1fr 1fr; gap: 12px; }
+  .exhibit-grid img, .exhibit-grid .ph {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    border-radius: 6px; background: var(--navy-dark);
+  }
+
+  /* ============ S15 — Feedback numbers ============ */
+  .s-numbers { padding: 70px 80px; }
+  .num-grid { display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 18px; margin-top: 50px; }
+  .num-card { background: var(--white); padding: 30px 24px;
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 3px 14px rgba(0,0,0,0.08); text-align: center; }
+  .num-card .big { font-family: 'Playfair Display', serif;
+    font-size: 70px; font-weight: 900; color: var(--navy-dark);
+    line-height: 1; letter-spacing: -0.02em; }
+  .num-card .big .slash { color: var(--gold-dark); font-size: 36px;
+    font-style: italic; font-weight: 700; }
+  .num-card .lbl { font-size: 13px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--navy-mid); margin-top: 10px; }
+  .num-card .sub { font-size: 12px; color: var(--ink-soft); margin-top: 6px; }
+
+  .stat-row { display: flex; gap: 24px; margin-top: 30px;
+    align-items: baseline; }
+  .stat-row .stat-big { font-family: 'Playfair Display', serif;
+    font-size: 96px; font-weight: 900; color: var(--gold-dark);
+    line-height: 1; }
+  .stat-row .stat-txt { font-size: 16px; color: var(--ink-soft);
+    line-height: 1.55; max-width: 380px; }
+
+  /* ============ S16 — Themes table ============ */
+  .themes-table { width: 100%; margin-top: 36px; border-collapse: collapse; }
+  .themes-table th { text-align: left; padding: 14px 18px;
+    background: var(--navy-darkest); color: var(--gold-light);
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 700; }
+  .themes-table td { padding: 16px 18px; border-bottom: 1px solid #e3e6ec;
+    font-size: 15px; color: var(--ink-soft); }
+  .themes-table td.rank { font-family: 'Playfair Display', serif;
+    font-weight: 900; font-size: 22px; color: var(--gold-dark);
+    width: 60px; text-align: center; }
+  .themes-table td.count { font-family: 'Playfair Display', serif;
+    font-weight: 800; font-size: 20px; color: var(--navy-dark);
+    text-align: center; width: 100px; }
+  .themes-table td.theme { font-weight: 700; color: var(--navy-dark); font-size: 16px; }
+
+  /* ============ S17 — Refinement cards ============ */
+  .refine-grid { display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px; margin-top: 40px; }
+  .refine-card { background: var(--white); border-radius: 6px;
+    padding: 26px 24px; box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--gold); }
+  .refine-card.revise { border-top-color: var(--navy-mid); }
+  .refine-card.new { border-top-color: var(--sdg8-red); }
+  .refine-card h3 { font-size: 22px; font-weight: 800;
+    color: var(--navy-dark); margin-bottom: 14px;
+    letter-spacing: -0.01em; }
+  .refine-card ul { list-style: none; padding: 0; }
+  .refine-card li { font-size: 13.5px; color: var(--ink-soft);
+    padding-left: 16px; position: relative; margin-bottom: 8px;
+    line-height: 1.5; }
+  .refine-card li::before { content: '›'; position: absolute; left: 0;
+    color: var(--gold-dark); font-weight: 700; }
+
+  /* ============ S18 — Closing ============ */
+  .s-close { justify-content: center; align-items: center; text-align: center;
+    padding: 60px 80px; position: relative; }
+  .s-close h1 { font-size: 110px; color: var(--white); font-weight: 900;
+    letter-spacing: -0.03em; line-height: 0.95; }
+  .s-close h1 em { color: var(--gold-light); font-style: italic; }
+  .s-close .sub { margin-top: 26px; font-family: 'Playfair Display', serif;
+    font-size: 22px; font-style: italic; color: rgba(231,196,90,0.85); }
+  .s-close .qr { margin-top: 38px; padding: 14px; background: var(--white);
+    width: 140px; height: 140px; display: flex; align-items: center;
+    justify-content: center; border-radius: 8px; }
+  .s-close .qr img { width: 100%; height: 100%; object-fit: contain; }
+  .s-close .credit { margin-top: 26px; font-size: 12px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 600; }
+
+</style>
+</head>
+<body>
+
+<div class="nav-hint">Use ← → / space to navigate · F or Ctrl+P for full deck PDF</div>
+
+<div class="deck" id="deck">
+
+  <!-- ============ 1 — COVER ============ -->
+  <section class="slide dark s-cover glow active">
+    <div class="eyebrow on-dark">USC &middot; CIS 2205 &middot; Group Sigma &middot; 2026</div>
+    <h1>Scratch<span class="accent">Match</span></h1>
+    <div class="sub">Match your work to the people who need it &mdash; within Cebu.</div>
+    <div class="meta">
+      <div>Post-Exhibit Final Presentation</div>
+      <img src="../printables/assets/SDG_8_Logo.png" alt="SDG 8">
+    </div>
+    <div class="slide-num">01</div>
+  </section>
+
+  <!-- ============ 2 — THE PROBLEM ============ -->
+  <section class="slide dark s-problem">
+    <div class="eyebrow on-dark">The Problem</div>
+    <h2>Hiring in Cebu still runs on <em>keyword luck</em>.</h2>
+    <div class="problem-grid">
+      <div class="p-card">
+        <div class="p-num">Issue 01</div>
+        <div class="p-title">Underemployment</div>
+        <div class="p-desc">Open roles sit unfilled while qualified Cebuanos go without
+          work. The gap is matching, not supply.</div>
+      </div>
+      <div class="p-card">
+        <div class="p-num">Issue 02</div>
+        <div class="p-title">Overqualification</div>
+        <div class="p-desc">Talent ends up far below their skill ceiling. Wages stagnate,
+          growth stalls, skills decay from disuse.</div>
+      </div>
+      <div class="p-card">
+        <div class="p-num">Issue 03</div>
+        <div class="p-title">Underutilised AI</div>
+        <div class="p-desc">AI is everywhere &mdash; except where it could matter most.
+          Local hiring still runs on keyword counts, not meaning.</div>
+      </div>
+    </div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">02</div>
+  </section>
+
+  <!-- ============ 3 — WHAT IT IS ============ -->
+  <section class="slide cream s-bigstate">
+    <div class="eyebrow">What is Scratch Match?</div>
+    <div class="quote">A locally-bound, AI-assisted <em>employment matchmaker</em>
+      for the Province of Cebu.</div>
+    <div class="quote-sub">Upload a CV. Post a vacancy. Ask the advisor.
+      Everything runs on a single machine inside the province &mdash; no cloud
+      lock-in, no data leaving Cebu.</div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">03</div>
+  </section>
+
+  <!-- ============ 4 — MISSION ============ -->
+  <section class="slide cream">
+    <div class="pad">
+      <div class="eyebrow">Our Mission</div>
+      <h2>Local. Private. <em>Built for Cebu.</em></h2>
+      <p class="lead">Three commitments that shape every design decision and
+        every line of code in the prototype.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pi">01</div>
+          <div class="pt">Local-first</div>
+          <div class="pd">One machine, one province. Models, data, and matches
+            stay where the work is.</div>
+        </div>
+        <div class="pillar">
+          <div class="pi">02</div>
+          <div class="pt">Private by default</div>
+          <div class="pd">No third-party APIs, no telemetry. Seeker contact
+            details only revealed after a recorded match.</div>
+        </div>
+        <div class="pillar">
+          <div class="pi">03</div>
+          <div class="pt">Built for Cebuanos</div>
+          <div class="pd">Scoped to Cebu listings, Cebu employers, Cebu
+            initiatives &mdash; not a generic global board.</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">04</div>
+  </section>
+
+  <!-- ============ 5 — SDG 8 ============ -->
+  <section class="slide dark s-sdg split h2">
+    <div class="pad" style="justify-content: center; align-items: center;">
+      <img class="sdg-logo" src="../printables/assets/SDG_8_Logo.png" alt="SDG 8 Decent Work and Economic Growth">
+    </div>
+    <div class="pad sdg-right">
+      <div class="eyebrow on-dark">Alignment</div>
+      <h2>SDG 8 &mdash; <em>Decent Work and Economic Growth</em></h2>
+      <p>Scratch Match exists to push one specific UN sustainable
+        development goal forward at the city level.</p>
+      <ul class="sdg-bullets">
+        <li>Promotes full and productive employment by matching real skills
+          to real openings.</li>
+        <li>Reduces underemployment, especially for groups overlooked by
+          generic job boards.</li>
+        <li>Supports inclusive, locally-controlled labour systems that the
+          city government can host on its own infrastructure.</li>
+      </ul>
+    </div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">05</div>
+  </section>
+
+  <!-- ============ 6 — CEBU CITY (Labor Day) ============ -->
+  <section class="slide s-cebu split h32">
+    <div class="pad">
+      <span class="tag">May 1, 2026</span>
+      <div class="eyebrow">Why this matters &middot; Cebu City</div>
+      <h2 style="font-size:56px; color: var(--navy-dark); margin-top:14px;">
+        Cebu City is already <em>moving</em>.</h2>
+      <p>Labor Day 2026 marked a public renewal of the city's commitment
+        to decent work for every resident &mdash; from citywide job
+        fairs to new livelihood programmes. Scratch Match plugs directly
+        into that momentum.</p>
+    </div>
+    <div class="right-img">
+      <img src="../printables/assets/labor_day_2026.jpg" alt="Cebu City Labor Day 2026">
+    </div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">06</div>
+  </section>
+
+  <!-- ============ 7 — CEBU CITY (Seniors) ============ -->
+  <section class="slide s-cebu split h23">
+    <div class="right-img">
+      <img src="../printables/assets/senior_citizens_employment_2026.jpg" alt="Senior Citizens Employment Program 2026">
+    </div>
+    <div class="pad">
+      <span class="tag">2026 Initiative</span>
+      <div class="eyebrow">Seniors Back to Work</div>
+      <h2 style="font-size:54px; color: var(--navy-dark); margin-top:14px;">
+        Reaching demographics the <em>boards ignore</em>.</h2>
+      <p>A new livelihood track opens roles to elderly Cebuanos &mdash;
+        a population traditional job boards effectively filter out.
+        Local-first matching makes that demographic a first-class
+        citizen of the system.</p>
+    </div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">07</div>
+  </section>
+
+  <!-- ============ 8 — PERSONAS ============ -->
+  <section class="slide dark s-personas">
+    <div class="eyebrow on-dark">Who it serves</div>
+    <h2>Four <em>roles</em>. One platform.</h2>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="icon">◇</div>
+        <div class="role">Job Seeker</div>
+        <div class="want">As a Job Seeker, I want to:</div>
+        <ul>
+          <li>Upload my CV once and get matched.</li>
+          <li>See openings that actually fit my skills.</li>
+          <li>Ask an AI advisor to tailor my résumé.</li>
+        </ul>
+      </div>
+      <div class="persona-card">
+        <div class="icon">◆</div>
+        <div class="role">Employer</div>
+        <div class="want">As an Employer, I want to:</div>
+        <ul>
+          <li>Post a role and get a ranked shortlist.</li>
+          <li>Filter by real fit, not keyword sprays.</li>
+          <li>Reach Cebu-based talent first.</li>
+        </ul>
+      </div>
+      <div class="persona-card">
+        <div class="icon">▲</div>
+        <div class="role">Government (PEO Cebu)</div>
+        <div class="want">As Government, I want to:</div>
+        <ul>
+          <li>Host the service for residents on-prem.</li>
+          <li>Own the data and protect privacy.</li>
+          <li>Report on real labour outcomes.</li>
+        </ul>
+      </div>
+      <div class="persona-card">
+        <div class="icon">⌬</div>
+        <div class="role">Developers</div>
+        <div class="want">As Developers, I want to:</div>
+        <ul>
+          <li>Maintain and tune the matcher engine.</li>
+          <li>Keep the system offline and auditable.</li>
+          <li>Ship updates without cloud dependencies.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">08</div>
+  </section>
+
+  <!-- ============ 9 — HOW IT WORKS ============ -->
+  <section class="slide cream s-pipeline">
+    <div class="eyebrow">How it works</div>
+    <h2 style="color: var(--navy-dark); font-size:54px; margin-top:12px;">
+      One pipeline. Five steps. <em>All local.</em></h2>
+    <div class="pipe">
+      <div class="pipe-step">
+        <div class="pipe-n">01</div>
+        <div class="pipe-t">Parse</div>
+        <div class="pipe-d">PDF text<br>extracted via<br>pdf-parse.</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <div class="pipe-n">02</div>
+        <div class="pipe-t">Chunk</div>
+        <div class="pipe-d">~500-token<br>chunks, 50-token<br>overlap.</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <div class="pipe-n">03</div>
+        <div class="pipe-t">Embed</div>
+        <div class="pipe-d">nomic-embed-text<br>via Ollama,<br>768 dims.</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <div class="pipe-n">04</div>
+        <div class="pipe-t">Store</div>
+        <div class="pipe-d">SQLite for records,<br>Qdrant for<br>vectors.</div>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">
+        <div class="pipe-n">05</div>
+        <div class="pipe-t">Match</div>
+        <div class="pipe-d">Top-K chunk<br>scores aggregated<br>per CV / job.</div>
+      </div>
+    </div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">09</div>
+  </section>
+
+  <!-- ============ 10 — STACK ============ -->
+  <section class="slide dark s-stack">
+    <div class="eyebrow on-dark">The stack</div>
+    <h2>Four pieces. <em>All run on one machine.</em></h2>
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="layer">App</div>
+        <div class="name">Next.js</div>
+        <div class="role">App Router, server actions, one Node process &mdash;
+          no microservices.</div>
+      </div>
+      <div class="stack-card">
+        <div class="layer">Records</div>
+        <div class="name">SQLite</div>
+        <div class="role">Single file at <code>data/app.db</code>. Cheap,
+          file-based, zero ops.</div>
+      </div>
+      <div class="stack-card">
+        <div class="layer">Vectors</div>
+        <div class="name">Qdrant</div>
+        <div class="role">Two collections (CV chunks, job chunks), cosine
+          similarity, 768 dims.</div>
+      </div>
+      <div class="stack-card">
+        <div class="layer">Brains</div>
+        <div class="name">Ollama</div>
+        <div class="role">Mistral 7B for chat, nomic-embed-text for
+          embeddings. No API keys.</div>
+      </div>
+    </div>
+    <div class="stack-tagline">No cloud. No API keys. No data leaves the machine.</div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">10</div>
+  </section>
+
+  <!-- ============ 11 — FOR SEEKERS ============ -->
+  <section class="slide split h2">
+    <div class="img-frame"><img src="../printables/assets/seekers.png" alt="Seeker dashboard"></div>
+    <div class="pad">
+      <div class="eyebrow">For Job Seekers</div>
+      <h2>Upload once. <em>Get matched.</em></h2>
+      <div class="feat-list">
+        <div class="feat">
+          <div class="n">01</div>
+          <div class="body">
+            <div class="t">CV upload &amp; auto-match</div>
+            <div class="d">Parse a PDF, embed it, surface the top open jobs
+              in Cebu with a score and a snippet.</div>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="n">02</div>
+          <div class="body">
+            <div class="t">Advisor chat (RAG)</div>
+            <div class="d">"Tailor my CV for X" / "What jobs fit me?" &mdash;
+              grounded in your own CV and live Cebu listings.</div>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="n">03</div>
+          <div class="body">
+            <div class="t">Specialised job search</div>
+            <div class="d">Search by skill or location with an optional
+              semantic toggle that uses the embeddings.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">11</div>
+  </section>
+
+  <!-- ============ 12 — FOR EMPLOYERS ============ -->
+  <section class="slide split h2">
+    <div class="pad">
+      <div class="eyebrow">For Employers</div>
+      <h2>Post once. <em>See real fits.</em></h2>
+      <div class="feat-list">
+        <div class="feat">
+          <div class="n">01</div>
+          <div class="body">
+            <div class="t">Post a job (or upload the JD)</div>
+            <div class="d">Same pipeline: parse, chunk, embed. Five open
+              roles per employer, kept lean by design.</div>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="n">02</div>
+          <div class="body">
+            <div class="t">Hiring assistant chat</div>
+            <div class="d">"Find me three candidates for Job #2" &mdash;
+              the agent retrieves, summarises, and links to CVs.</div>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="n">03</div>
+          <div class="body">
+            <div class="t">Privacy-respecting candidate search</div>
+            <div class="d">Seeker contact details are gated behind a
+              recorded match &mdash; never on browse.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="img-frame"><img src="../printables/assets/employers.png" alt="Employer view"></div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">12</div>
+  </section>
+
+  <!-- ============ 13 — THE PROTOTYPE ============ -->
+  <section class="slide cream">
+    <div class="pad" style="padding: 60px 80px;">
+      <div class="eyebrow">The Prototype</div>
+      <h2 style="font-size:54px;">Live build. <em>Today.</em></h2>
+      <p>Four primary surfaces, all driven from the same local pipeline,
+        all rendered as real screens during the booth demo.</p>
+      <div class="shots-grid">
+        <div class="shot"><div class="lbl">Home</div><img src="../printables/assets/home.png" alt="Home"></div>
+        <div class="shot"><div class="lbl">Seeker</div><img src="../printables/assets/seekers.png" alt="Seeker"></div>
+        <div class="shot"><div class="lbl">Employer</div><img src="../printables/assets/employers.png" alt="Employer"></div>
+        <div class="shot"><div class="lbl">Admin</div><img src="../printables/assets/admin.png" alt="Admin"></div>
+      </div>
+    </div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">13</div>
+  </section>
+
+  <!-- ============ 14 — THE EXHIBIT ============ -->
+  <section class="slide cream">
+    <div class="pad" style="padding: 60px 80px;">
+      <div class="eyebrow">The Exhibit</div>
+      <h2 style="font-size:54px;">From sticky note to <em>standee</em>.</h2>
+      <div class="exhibit-grid">
+        <img src="../printables/assets/tarpaulin_final.png" alt="Standee / tarpaulin">
+        <div class="stack-imgs">
+          <img src="../printables/assets/brochure_4x.png" alt="Brochure">
+          <img src="../printables/assets/prototype.jpg" alt="Process sketch">
+        </div>
+      </div>
+    </div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">14</div>
+  </section>
+
+  <!-- ============ 15 — FEEDBACK NUMBERS ============ -->
+  <section class="slide cream s-numbers">
+    <div class="eyebrow">What we heard</div>
+    <h2 style="font-size:54px; color: var(--navy-dark); margin-top:12px;">
+      27 responses. <em>One signal.</em></h2>
+    <div class="num-grid">
+      <div class="num-card">
+        <div class="big">4.70<span class="slash">/5</span></div>
+        <div class="lbl">Usability</div>
+        <div class="sub">21 perfect scores</div>
+      </div>
+      <div class="num-card">
+        <div class="big">4.70<span class="slash">/5</span></div>
+        <div class="lbl">Design</div>
+        <div class="sub">20 perfect scores</div>
+      </div>
+      <div class="num-card">
+        <div class="big">4.70<span class="slash">/5</span></div>
+        <div class="lbl">Functionality</div>
+        <div class="sub">21 perfect scores</div>
+      </div>
+      <div class="num-card">
+        <div class="big">4.70<span class="slash">/5</span></div>
+        <div class="lbl">Content Clarity</div>
+        <div class="sub">21 perfect scores</div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-big">0</div>
+      <div class="stat-txt">responses below 3 / 5 on any dimension &mdash;
+        the prototype landed as a working concept, not a demo prop.</div>
+    </div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">15</div>
+  </section>
+
+  <!-- ============ 16 — TOP THEMES ============ -->
+  <section class="slide">
+    <div class="pad" style="padding: 60px 80px;">
+      <div class="eyebrow">What we heard, sorted</div>
+      <h2 style="font-size:54px;">Five themes. <em>Ranked.</em></h2>
+      <table class="themes-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Theme</th>
+            <th>Mentions</th>
+            <th>Summary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank">1</td>
+            <td class="theme">Mobile / cross-platform</td>
+            <td class="count">6</td>
+            <td>Repeated requests to reach the service from a phone.</td>
+          </tr>
+          <tr>
+            <td class="rank">2</td>
+            <td class="theme">Visual / UI polish</td>
+            <td class="count">3</td>
+            <td>A minority found the minimalism "bland"; majority praised it.</td>
+          </tr>
+          <tr>
+            <td class="rank">3</td>
+            <td class="theme">Brevity &amp; form cues</td>
+            <td class="count">3</td>
+            <td>Tighter copy and asterisks on required fields.</td>
+          </tr>
+          <tr>
+            <td class="rank">4</td>
+            <td class="theme">Functional reliability</td>
+            <td class="count">2</td>
+            <td>One detailed bug report; treated as high-severity.</td>
+          </tr>
+          <tr>
+            <td class="rank">5</td>
+            <td class="theme">Accessibility</td>
+            <td class="count">1</td>
+            <td>General ask for a structured a11y audit.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">16</div>
+  </section>
+
+  <!-- ============ 17 — REFINEMENT STRATEGY ============ -->
+  <section class="slide cream">
+    <div class="pad" style="padding: 60px 80px;">
+      <div class="eyebrow">From "as-is" to "to-be"</div>
+      <h2 style="font-size:54px;">Refinement <em>strategy</em>.</h2>
+      <p>Not a redesign &mdash; a tightening. Same pitch, same shape,
+        more of the feature paths actually working end to end.</p>
+      <div class="refine-grid">
+        <div class="refine-card">
+          <h3>Retain</h3>
+          <ul>
+            <li>Minimalist navy &amp; gold visual language</li>
+            <li>Three-role landing structure</li>
+            <li>Persona-led storytelling</li>
+            <li>Local-only / on-premise data story</li>
+          </ul>
+        </div>
+        <div class="refine-card revise">
+          <h3>Revise</h3>
+          <ul>
+            <li>Sign-in &rarr; first-feature happy path on fresh DB</li>
+            <li>Seeker dashboard: visible CV upload CTA</li>
+            <li>Employer dashboard: reliable "my jobs" list</li>
+            <li>Hide admin route from public landing</li>
+          </ul>
+        </div>
+        <div class="refine-card new">
+          <h3>Add</h3>
+          <ul>
+            <li>Responsive mobile layout pass</li>
+            <li>Required-field asterisks on every form</li>
+            <li>Accessibility audit (contrast, focus, keyboard)</li>
+            <li>Tighter landing copy and microcopy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-mark">Group Sigma &middot; CIS 2205</div>
+    <div class="slide-num">17</div>
+  </section>
+
+  <!-- ============ 18 — CLOSING ============ -->
+  <section class="slide dark s-close glow">
+    <div class="eyebrow on-dark">Thank you</div>
+    <h1>Local. Private.<br><em>Built for Cebu.</em></h1>
+    <div class="sub">Scan to try the live build, or open a conversation with the team.</div>
+    <div class="qr"><img src="../printables/assets/QR_code.png" alt="QR code to live demo"></div>
+    <div class="credit">Group Sigma &middot; CIS 2205 &middot; University of San Carlos &middot; 2026</div>
+    <div class="slide-num">18</div>
+  </section>
+
+</div>
+
+<div class="controls">
+  <button id="prev" aria-label="Previous">‹</button>
+  <span class="counter"><span id="cur">1</span> / <span id="tot">18</span></span>
+  <button id="next" aria-label="Next">›</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const cur = document.getElementById('cur');
+  const tot = document.getElementById('tot');
+  tot.textContent = slides.length;
+  let i = 0;
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    cur.textContent = i + 1;
+    if (location.hash !== '#' + (i + 1)) {
+      history.replaceState(null, '', '#' + (i + 1));
+    }
+  }
+  document.getElementById('prev').onclick = () => show(i - 1);
+  document.getElementById('next').onclick = () => show(i + 1);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(i + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(i - 1); }
+    else if (e.key === 'Home') { show(0); }
+    else if (e.key === 'End') { show(slides.length - 1); }
+    else if (e.key.toLowerCase() === 'f') {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen();
+    }
+  });
+  const hashN = parseInt((location.hash || '').replace('#', ''), 10);
+  if (!isNaN(hashN) && hashN >= 1) show(hashN - 1);
+</script>
+
+</body>
+</html>

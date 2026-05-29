@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CIS 2205 — Post-Exhibit Reflection and Refinement Report (Scratch Match)</title>
+<style>
+  :root {
+    --blue: #2E75B6;
+    --blue-dark: #1F4E79;
+    --green: #548235;
+    --rule: #BFBFBF;
+    --ink: #000000;
+  }
+  @page { size: A4; margin: 22mm 20mm 22mm 20mm; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; color: var(--ink);
+    font-family: Calibri, "Segoe UI", Tahoma, Arial, sans-serif;
+    font-size: 11pt; line-height: 1.45; }
+  h1 { font-size: 22pt; font-weight: 700; margin: 0 0 4mm; color: var(--ink); }
+  h2 { color: var(--blue); font-size: 14pt; font-weight: 700;
+       margin: 0 0 4mm; }
+  h3 { color: var(--blue); font-size: 12pt; font-weight: 700;
+       margin: 6mm 0 2mm; }
+  p { margin: 0 0 3mm; }
+  .lead { color: var(--green); font-style: italic; margin-bottom: 5mm; }
+  ul, ol { margin: 0 0 3mm 6mm; padding: 0; }
+  li { margin-bottom: 1.5mm; }
+  table { width: 100%; border-collapse: collapse; margin: 2mm 0 5mm;
+          font-size: 10.5pt; }
+  th, td { border: 0.6pt solid var(--ink); padding: 2mm 3mm;
+           vertical-align: top; text-align: left; }
+  th { background: #F2F2F2; font-weight: 700; }
+  td.rank, td.num { text-align: center; }
+  .cover { text-align: center; padding-top: 14mm; }
+  .cover .uni { color: var(--green); font-weight: 700; font-size: 18pt;
+                letter-spacing: 0.02em; }
+  .cover .motto { color: var(--ink); font-size: 9.5pt; letter-spacing: 0.18em;
+                  margin-top: 2mm; }
+  .cover .course { color: var(--ink); font-size: 26pt; font-weight: 700;
+                   margin-top: 26mm; }
+  .cover .subtitle { color: var(--ink); font-size: 16pt; margin-top: 3mm; }
+  .cover .meta { text-align: left; margin: 40mm auto 0; max-width: 90mm; }
+  .cover .meta p { margin: 3mm 0; }
+  .toc h2 { margin-bottom: 6mm; }
+  .toc ol { list-style: none; margin: 0; padding: 0; }
+  .toc li { margin-bottom: 3mm; font-size: 11.5pt; }
+  .pagebreak { page-break-before: always; }
+  .footer-spacer { height: 0; }
+  blockquote { border-left: 2pt solid var(--blue); margin: 2mm 0 3mm;
+               padding: 1mm 0 1mm 4mm; color: #333; font-style: italic; }
+  .small { font-size: 10pt; color: #333; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="cover">
+  <div class="uni">UNIVERSITY OF SAN CARLOS</div>
+  <div class="motto">SCIENTIA &bull; VIRTUS &bull; DEVOTIO</div>
+  <div class="course">CIS 2205: DESIGN PROJECT</div>
+  <div class="subtitle">Post-Exhibit Reflection and Refinement Report</div>
+  <div class="meta">
+    <p><strong>TEAM NAME:</strong> Group Sigma (Group 2)</p>
+    <p><strong>MEMBERS:</strong></p>
+    <p>1. ____________________________</p>
+    <p>2. ____________________________</p>
+    <p>3. ____________________________</p>
+    <p><strong>DATE:</strong> 28 May 2026</p>
+    <p><strong>INSTRUCTOR:</strong> &lt;Replace with instructor name&gt;</p>
+  </div>
+</section>
+
+<!-- ============ TOC ============ -->
+<section class="pagebreak toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li>1. Executive Summary</li>
+    <li>2. Feedback Organization (Raw Data)</li>
+    <li>3. Feedback Categorization</li>
+    <li>4. Thematic Analysis and Trends</li>
+    <li>5. Evaluation Against Original Design</li>
+    <li>6. Refinement and Prototype Strategy</li>
+    <li>7. Conclusion</li>
+  </ol>
+</section>
+
+<!-- ============ 1. EXECUTIVE SUMMARY ============ -->
+<section class="pagebreak">
+  <h2>1. Executive Summary</h2>
+  <p>Scratch Match is a locally-bound, AI-assisted employment matching
+  service for the Province of Cebu. The prototype was presented at the
+  CIS 2205 design exhibit, where visitors interacted with the landing
+  page, persona handouts, tri-fold brochure, standee, and a live
+  walkthrough of the seeker, employer, and administrator portals. A
+  short Google Form collected scored ratings (1&ndash;5) on four
+  dimensions &mdash; usability, design, functionality, and content
+  clarity &mdash; and free-text suggestions for each.</p>
+
+  <p>Across <strong>27 responses</strong> gathered between 11 May and
+  28 May 2026, the prototype averaged <strong>4.70 / 5.00</strong> on
+  every scored dimension. Open-text comments most often praised the
+  minimalist visual approach and the clarity of the on-screen
+  instructions. The single most consistent forward-looking request was
+  a <strong>mobile version</strong> of the application, mentioned by
+  six separate respondents. The most consequential single response
+  surfaced a cluster of working-state defects &mdash; a failed sign-in
+  attempt, a missing CV upload entry point on the seeker dashboard, and
+  newly posted jobs not appearing in the employer listing &mdash; that
+  the team had not yet caught in internal testing.</p>
+
+  <p>The primary goal of this document is therefore twofold: to
+  organise the raw feedback against the categories required by the
+  course rubric, and to translate the resulting themes into a concrete
+  refinement plan that distinguishes which elements of the "as-is"
+  prototype should be retained, revised, or added in the "to-be"
+  version.</p>
+</section>
+
+<!-- ============ 2. FEEDBACK ORGANIZATION ============ -->
+<section class="pagebreak">
+  <h2>2. Feedback Organization</h2>
+  <p>All raw feedback was collected through a single Google Form linked
+  from the feedback ribbon on the live prototype site and from the QR
+  code printed on the booth standee. The exported spreadsheet is stored
+  alongside this document:</p>
+  <ul>
+    <li><strong>File:</strong> <em>Design Project &mdash; Group 2 CIS
+        2205 Feedback Form (Group Sigma) (Responses).xlsx</em></li>
+    <li><strong>Mirror copy (PDF):</strong> <em>Design Project &mdash;
+        Group 2 CIS 2205 Feedback Form (Group Sigma) (Responses) &mdash;
+        Form Responses 1.pdf</em></li>
+    <li><strong>Collection window:</strong> 11 May 2026 &mdash; 28 May
+        2026</li>
+    <li><strong>Total responses:</strong> 27 (anonymous; no personally
+        identifiable information collected)</li>
+  </ul>
+
+  <p>Each row contains four numeric ratings and six open-text fields
+  (one per scored dimension, plus a general technical-suggestions field
+  and a free-form comments field). The numeric distribution is
+  summarised below.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th class="num">Mean</th>
+        <th class="num">Median</th>
+        <th class="num">5/5 count</th>
+        <th class="num">4/5 count</th>
+        <th class="num">3/5 count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Usability</td><td class="num">4.70</td><td class="num">5</td><td class="num">21</td><td class="num">4</td><td class="num">2</td></tr>
+      <tr><td>Design</td><td class="num">4.70</td><td class="num">5</td><td class="num">20</td><td class="num">6</td><td class="num">1</td></tr>
+      <tr><td>Functionality</td><td class="num">4.70</td><td class="num">5</td><td class="num">21</td><td class="num">4</td><td class="num">2</td></tr>
+      <tr><td>Content Clarity</td><td class="num">4.70</td><td class="num">5</td><td class="num">21</td><td class="num">4</td><td class="num">2</td></tr>
+    </tbody>
+  </table>
+
+  <p>No respondent rated any dimension below 3/5. The two 3/5 ratings
+  on usability, functionality, and content clarity came from a single
+  detailed reviewer whose written feedback is treated separately in
+  Section 4 because of its diagnostic value.</p>
+</section>
+
+<!-- ============ 3. FEEDBACK CATEGORIZATION ============ -->
+<section class="pagebreak">
+  <h2>3. Feedback Categorization</h2>
+  <p>The open-text responses were sorted into the five categories
+  required by the rubric. Each cell holds a representative,
+  paraphrased summary of the actual remarks received; verbatim quotes
+  are reserved for Section 4.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:20%">USABILITY</th>
+        <th style="width:20%">DESIGN</th>
+        <th style="width:20%">FUNCTIONALITY</th>
+        <th style="width:20%">CONTENT CLARITY</th>
+        <th style="width:20%">TECHNICAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          "Very straightforward."<br><br>
+          Requests to "make it more simple" on first contact.<br><br>
+          One detailed report of features not behaving as expected
+          (network error on sign-in; CV upload entry not discoverable
+          on the seeker dashboard).
+        </td>
+        <td>
+          "Minimalistic yellow design is a nice touch."<br><br>
+          "Very interesting and modern approach."<br><br>
+          Counter-note: "Maybe more UI work so it won't look that
+          bland." &mdash; one respondent felt the surface was too
+          restrained.
+        </td>
+        <td>
+          "Functionally useable!" / "It's well used."<br><br>
+          One detailed report that newly posted jobs were not
+          appearing in the employer listing, suggesting the
+          write-then-read path is not fully wired end-to-end.<br><br>
+          One general ask to "make new features for the app".
+        </td>
+        <td>
+          "Each feature seems easy to use because of the clear
+          instructions."<br><br>
+          Asks for shorter copy ("more brief").<br><br>
+          One specific UX ask: add asterisks to required fields on
+          fill-up forms.
+        </td>
+        <td>
+          Mobile application &mdash; six respondents.<br><br>
+          Broader UI redesign &mdash; two respondents.<br><br>
+          Improved accessibility &mdash; one respondent.<br><br>
+          One security-flavoured note that the administrator page
+          appeared to be openly accessible.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ 4. THEMATIC ANALYSIS ============ -->
+<section class="pagebreak">
+  <h2>4. Thematic Analysis and Trends</h2>
+
+  <h3>4.1 Frequently Repeated Feedback Table</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:30%">THEME / TREND</th>
+        <th style="width:18%">#&nbsp;OF MENTIONS</th>
+        <th>FEEDBACK SUMMARY</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mobile / cross-platform access</td>
+        <td class="num">6</td>
+        <td>Repeated requests for a mobile version so the service can
+            be reached on a phone, not only a laptop browser.</td>
+      </tr>
+      <tr>
+        <td>Visual / UI polish</td>
+        <td class="num">3</td>
+        <td>Mixed signal: most respondents called the design
+            minimalist and modern, but a minority felt it read as
+            "bland" and asked for a second visual pass.</td>
+      </tr>
+      <tr>
+        <td>Content brevity &amp; form cues</td>
+        <td class="num">3</td>
+        <td>Shorter on-screen copy, simpler first impression, and
+            explicit asterisks on required form fields.</td>
+      </tr>
+      <tr>
+        <td>Functional reliability (bugs)</td>
+        <td class="num">2</td>
+        <td>One detailed walkthrough reported a sign-in network
+            error, an invisible CV upload control, and posted jobs not
+            appearing for the employer. A second response noted
+            something "missing" without specifics.</td>
+      </tr>
+      <tr>
+        <td>Accessibility</td>
+        <td class="num">1</td>
+        <td>A general ask for "more accessibility" without a specific
+            sub-target.</td>
+      </tr>
+      <tr>
+        <td>Administrator route exposure</td>
+        <td class="num">1</td>
+        <td>A note that the admin page felt unexpectedly easy to
+            reach for a non-admin user.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>4.2 Ranking of Focused Feedback</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:8%">Rank&nbsp;#</th>
+        <th style="width:28%">THEME / TREND</th>
+        <th style="width:16%">#&nbsp;OF MENTIONS</th>
+        <th>FEEDBACK SUMMARY</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="rank">1</td>
+        <td>Mobile / cross-platform access</td>
+        <td class="num">6</td>
+        <td>Respondents consistently want to reach the service from a
+            phone; this is the single largest signal in the dataset.</td>
+      </tr>
+      <tr>
+        <td class="rank">2</td>
+        <td>Visual / UI polish</td>
+        <td class="num">3</td>
+        <td>A second visual pass on the landing page and dashboards
+            to address the "bland" reading without losing the
+            minimalist quality the majority praised.</td>
+      </tr>
+      <tr>
+        <td class="rank">3</td>
+        <td>Content brevity &amp; form cues</td>
+        <td class="num">3</td>
+        <td>Tighten on-screen copy; mark required fields with
+            asterisks so users know what is mandatory before
+            submitting.</td>
+      </tr>
+      <tr>
+        <td class="rank">4</td>
+        <td>Functional reliability (bugs)</td>
+        <td class="num">2</td>
+        <td>Few mentions, but high severity: end-to-end paths for
+            sign-in, CV upload, and job posting need verification
+            against a fresh database.</td>
+      </tr>
+      <tr>
+        <td class="rank">5</td>
+        <td>Accessibility</td>
+        <td class="num">1</td>
+        <td>One ask, not enough on its own to act in detail, but
+            worth a structured audit alongside the UI polish pass.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Interpretation</h3>
+  <p>The ranking above is sorted strictly by mention count, but the
+  team's response cannot follow the same order. The top three themes
+  &mdash; mobile access, UI polish, and content brevity &mdash; are
+  refinements; the prototype works, and visitors are asking for a
+  better surface on top of it. The fourth-ranked theme, by contrast,
+  is the only one that questions whether parts of the system work at
+  all. A single respondent, who otherwise rated design 5/5, walked
+  through three concrete reproduction steps that the team had not
+  caught internally. Frequency alone would put this fourth; severity
+  pulls it forward in the action plan in Section 6.</p>
+
+  <p>Positive highlights were broad rather than thematic. Phrases such
+  as "very straightforward", "clear instructions", "well used", and
+  "great UI" appeared across responses on every scored dimension. The
+  one written outlier &mdash; "bland" &mdash; is the inverse of the
+  same minimalism that most respondents praised, which is consistent
+  with the design intent and does not by itself justify a rework.</p>
+</section>
+
+<!-- ============ 5. EVALUATION AGAINST ORIGINAL DESIGN ============ -->
+<section class="pagebreak">
+  <h2>5. Evaluation Against Original Design</h2>
+  <p>The original design brief committed to a three-role landing
+  surface (job seeker, employer, administrator), a local-only data
+  story, and a deliberately restrained visual language. The exhibit
+  feedback is mapped back to those design choices below.</p>
+
+  <ul>
+    <li><strong>Navigation:</strong> the three-role split and the
+    "Choose your role" section read as obvious to visitors; no
+    respondent reported being unsure where to click first. The one
+    correction is the administrator route, which felt unexpectedly
+    reachable and should be hidden from the public landing surface
+    even though it is already gated server-side.</li>
+
+    <li><strong>Readability / Typography:</strong> no complaints about
+    font size, line length, or contrast were submitted. The
+    Playfair-and-Inter pairing inherited from the design system can
+    be retained as-is for the next prototype.</li>
+
+    <li><strong>Instructional Clarity:</strong> the most direct praise
+    was for the on-screen instructions, which respondents described
+    as "clear" and "straightforward". The two improvements raised
+    were a request for shorter copy in some places and a specific
+    request for asterisks on required form fields.</li>
+
+    <li><strong>Responsiveness:</strong> not directly tested in the
+    booth (the demo was driven on a laptop), but six respondents
+    asked for a mobile experience. This is the single largest gap
+    between the original brief, which targeted "single-machine
+    deploy" without explicitly addressing form-factor, and what
+    visitors expected from a public-facing service.</li>
+
+    <li><strong>Accessibility:</strong> one general ask. The original
+    brief did not enumerate accessibility targets, so this is treated
+    as an additive requirement rather than a regression.</li>
+  </ul>
+</section>
+
+<!-- ============ 6. REFINEMENT & PROTOTYPE STRATEGY ============ -->
+<section class="pagebreak">
+  <h2>6. Refinement and Prototype Strategy</h2>
+
+  <h3>6.1 Insights for Improvement</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:30%">FEEDBACK AREA</th>
+        <th>ACTIONABLE REFINEMENT</th>
+        <th style="width:15%">PRIORITY (H/M/L)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sign-in network error</td>
+        <td>Reproduce on a fresh database, verify the session-cookie
+            round-trip, and add a friendlier error state on the login
+            form.</td>
+        <td class="num">H</td>
+      </tr>
+      <tr>
+        <td>CV upload entry point not discoverable</td>
+        <td>Add an explicit "Upload CV" call-to-action to the seeker
+            dashboard so the primary first-use path is one click from
+            login.</td>
+        <td class="num">H</td>
+      </tr>
+      <tr>
+        <td>Posted jobs not appearing for employer</td>
+        <td>Confirm the SQLite write and the Qdrant upsert both
+            succeed, and that the employer "my jobs" list re-queries
+            after a post.</td>
+        <td class="num">H</td>
+      </tr>
+      <tr>
+        <td>Administrator route exposure</td>
+        <td>Hide the admin entry point from the public landing for
+            non-admin sessions; keep the server-side role check as the
+            authoritative gate.</td>
+        <td class="num">H</td>
+      </tr>
+      <tr>
+        <td>Required fields not marked</td>
+        <td>Add visible asterisks to required inputs on the signup,
+            onboarding, CV upload, and job posting forms.</td>
+        <td class="num">H</td>
+      </tr>
+      <tr>
+        <td>Mobile / cross-platform access</td>
+        <td>Responsive layout pass on the landing, dashboards, and
+            chat surfaces. Defer a native mobile build to a later
+            version.</td>
+        <td class="num">M</td>
+      </tr>
+      <tr>
+        <td>Visual / UI polish</td>
+        <td>Second design pass on the landing hero and dashboards to
+            answer the "bland" outlier without losing the minimalist
+            quality the majority praised.</td>
+        <td class="num">M</td>
+      </tr>
+      <tr>
+        <td>Content brevity</td>
+        <td>Tighten the landing copy and the onboarding microcopy;
+            push secondary information into expandable details.</td>
+        <td class="num">M</td>
+      </tr>
+      <tr>
+        <td>Accessibility</td>
+        <td>Audit colour contrast against WCAG AA, add visible focus
+            rings, and verify keyboard navigation on the primary
+            flows.</td>
+        <td class="num">M</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>6.2 Final Refinement Summary</h3>
+  <ul>
+    <li><strong>Elements to Retain:</strong> the minimalist
+    navy-and-gold visual language, the three-role landing structure,
+    the persona-led storytelling on the brochure and standee, and the
+    local-only / on-premise data story that drew positive comment
+    during walkthroughs.</li>
+
+    <li><strong>Elements to Revise:</strong> the sign-in &rarr;
+    first-feature happy path so that a stranger can complete it end
+    to end on a fresh database; the seeker dashboard so the CV upload
+    control is visible at first glance; the employer dashboard so
+    newly posted jobs reliably appear in the list; and the public
+    landing so the administrator route is no longer suggested to
+    non-admin visitors.</li>
+
+    <li><strong>New Ideas to Implement:</strong> a responsive layout
+    pass for mobile browsers, asterisks on required form fields, and
+    a structured accessibility audit covering contrast, focus states,
+    and keyboard navigation.</li>
+  </ul>
+</section>
+
+<!-- ============ 7. CONCLUSION ============ -->
+<section class="pagebreak">
+  <h2>7. Conclusion</h2>
+  <p>The exhibit confirmed the central premise of Scratch Match.
+  Visitors understood the pitch without lengthy explanation, rated all
+  four scored dimensions at 4.70 / 5.00 on average, and singled out the
+  clarity of the on-screen instructions as the prototype's strongest
+  quality. The most common forward-looking request was a mobile
+  version, which is a refinement of reach rather than a critique of
+  concept.</p>
+
+  <p>The single critical review did not dispute the idea. It surfaced
+  gaps between the path the team rehearsed in the demo and the rest of
+  the feature surface &mdash; sign-in, CV upload, employer job listing,
+  and the visibility of the admin route &mdash; that are addressable
+  without changing the architecture. Treating that one detailed review
+  as a high-severity input, rather than averaging it out against the
+  majority of high scores, is the most important judgement this
+  document records.</p>
+
+  <p>The "to-be" prototype is therefore not a redesign. It keeps the
+  same pitch, the same three-role shape, and the same restrained visual
+  language that visitors responded to. What changes is reliability and
+  reach: every primary path must work end to end on a fresh database,
+  the layout must answer a phone-sized screen, and the small but real
+  asks &mdash; required-field markers, tighter copy, accessibility
+  basics &mdash; should land in the same iteration so that the next
+  time a stranger sits at the keyboard, the prototype tells a complete
+  story rather than a rehearsed one.</p>
+</section>
+
+</body>
+</html>
